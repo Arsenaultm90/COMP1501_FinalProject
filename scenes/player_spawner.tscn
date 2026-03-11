@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cqn1xnyuh4ar8"]
+
+[ext_resource type="Texture2D" uid="uid://chpkskmkt057f" path="res://art/character/prototype_character.png" id="1_27dp6"]
+
+[node name="PlayerSpawner" type="Node2D" unique_id=398890483]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1112350615]
+modulate = Color(0.3019608, 1, 0.30588236, 1)
+position = Vector2(0, -7)
+texture = ExtResource("1_27dp6")
+hframes = 4
+vframes = 12
