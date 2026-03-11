@@ -10,18 +10,6 @@ height = 16.0
 
 [sub_resource type="Animation" id="Animation_e6tc2"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_tqm6u"]
 resource_name = "idle_down"
@@ -30,7 +18,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -46,7 +34,7 @@ length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +51,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,7 +68,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +85,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -114,7 +102,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterBody2D/Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -135,23 +123,20 @@ _data = {
 &"walk_up": SubResource("Animation_d3a2h")
 }
 
-[node name="Character" type="Node2D" unique_id=140324884]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2062887617]
-position = Vector2(0, -7)
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2062887617]
 script = ExtResource("1_tqm6u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1905319261]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905319261]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_ig48j")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1741844972]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1741844972]
 texture_filter = 1
 texture = ExtResource("1_nrcqd")
 hframes = 4
 vframes = 12
 
-[node name="shadow" type="Sprite2D" parent="CharacterBody2D" unique_id=1372702415]
+[node name="shadow" type="Sprite2D" parent="." unique_id=1372702415]
 texture = ExtResource("2_ig48j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1669397452]
