@@ -123,7 +123,10 @@ _data = {
 &"walk_up": SubResource("Animation_d3a2h")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2062887617]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqm6u"]
+size = Vector2(25, 25)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2062887617 groups=["Player"]]
 script = ExtResource("1_tqm6u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905319261]
@@ -141,3 +144,27 @@ texture = ExtResource("2_ig48j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1669397452]
 libraries/ = SubResource("AnimationLibrary_e6tc2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=677651076]
+collision_layer = 3
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1785066846]
+shape = SubResource("RectangleShape2D_tqm6u")
+
+[node name="InteractLabel" type="Label" parent="Area2D" unique_id=1086933541]
+visible = false
+offset_left = -31.0
+offset_top = -33.0
+offset_right = 38.0
+offset_bottom = -10.0
+text = "Press \"E\""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1392392694]
+zoom = Vector2(1.3, 1.3)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

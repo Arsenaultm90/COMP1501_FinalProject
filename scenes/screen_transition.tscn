@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://tvaeudywc4j4"]
+
+[ext_resource type="Script" uid="uid://cmasfkhl3m8dr" path="res://scripts/global_scene_manager.gd" id="1_yu5p1"]
+
+[node name="ScreenTransition" type="CanvasLayer" unique_id=1510708910]
+script = ExtResource("1_yu5p1")
+
+[node name="FadeRect" type="ColorRect" parent="." unique_id=677576700]
+offset_right = 484.0
+offset_bottom = 275.0
+color = Color(0, 0, 0, 1)
+
+[node name="TimeLabel" type="Label" parent="." unique_id=1551388087]
+offset_right = 40.0
+offset_bottom = 23.0

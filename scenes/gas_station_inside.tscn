@@ -1,3 +1,8 @@
 [gd_scene format=3 uid="uid://gxvg5wjcjuw4"]
 
-[node name="Node2D" type="Node2D" unique_id=235580495]
+[ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="1_myx53"]
+
+[node name="GasInsideRoot" type="Node2D" unique_id=235580495]
+
+[node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("1_myx53")]
+position = Vector2(272, 157)
