@@ -3,13 +3,17 @@
 [ext_resource type="Script" uid="uid://xndg5qi1o0mt" path="res://scripts/out_to_in_transition.gd" id="2_8lkp2"]
 [ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="2_nsm10"]
 [ext_resource type="Texture2D" uid="uid://bbida3g5bg3h6" path="res://art/character/static_shadow.png" id="3_8lkp2"]
+[ext_resource type="Script" uid="uid://dk88kahs870dv" path="res://scripts/day_night_cycle.gd" id="4_udpx5"]
+[ext_resource type="Texture2D" uid="uid://ee5egjt47mlx" path="res://art/daynightcycle-gradient-texture.tres" id="5_7r1kg"]
+[ext_resource type="Texture2D" uid="uid://c0jsmtb3n3y3r" path="res://art/environment/Gas Station.png" id="6_bkgx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udpx5"]
 
-[node name="OutsideRoot" type="Node2D" unique_id=851555587]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkgx0"]
+size = Vector2(148, 111)
 
-[node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("2_nsm10")]
-position = Vector2(217, 129)
+[node name="OutsideRoot" type="Node2D" unique_id=851555587]
+y_sort_enabled = true
 
 [node name="SceneTransition" type="Area2D" parent="." unique_id=2003465589 groups=["Interactable"]]
 position = Vector2(218, 31)
@@ -23,3 +27,28 @@ shape = SubResource("RectangleShape2D_udpx5")
 
 [node name="Sprite2D" type="Sprite2D" parent="SceneTransition" unique_id=147111179]
 texture = ExtResource("3_8lkp2")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2131039635]
+color = Color(0.08803957, 0.1037041, 0.4031897, 1)
+script = ExtResource("4_udpx5")
+gradient = ExtResource("5_7r1kg")
+
+[node name="Level" type="Node2D" parent="." unique_id=1041783062]
+y_sort_enabled = true
+
+[node name="PlayerSpawner" parent="Level" unique_id=398890483 instance=ExtResource("2_nsm10")]
+position = Vector2(217, 129)
+
+[node name="GasStationMain" type="StaticBody2D" parent="Level" unique_id=657708314]
+texture_filter = 1
+position = Vector2(218, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/GasStationMain" unique_id=450076710]
+position = Vector2(0.5, -18)
+shape = SubResource("RectangleShape2D_bkgx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/GasStationMain" unique_id=1645703032]
+texture_filter = 1
+position = Vector2(-0.5, 1)
+texture = ExtResource("6_bkgx0")
+offset = Vector2(0, -20)

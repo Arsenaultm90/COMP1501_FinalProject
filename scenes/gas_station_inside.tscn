@@ -6,3 +6,5 @@
 
 [node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("1_myx53")]
 position = Vector2(272, 157)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1799344812]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c13ini15gpx1d"
+path="res://.godot/imported/Twilight in the Empty Town.ogg-7a3a380c0639a1bff7269bb57bb11b77.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/music/Twilight in the Empty Town.ogg"
+dest_files=["res://.godot/imported/Twilight in the Empty Town.ogg-7a3a380c0639a1bff7269bb57bb11b77.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -4,9 +4,8 @@
 [ext_resource type="Script" uid="uid://dsbegdrqb04pc" path="res://scripts/player.gd" id="1_tqm6u"]
 [ext_resource type="Texture2D" uid="uid://bbida3g5bg3h6" path="res://art/character/static_shadow.png" id="2_ig48j"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ig48j"]
-radius = 6.0
-height = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6tc2"]
+size = Vector2(10.5, 4)
 
 [sub_resource type="Animation" id="Animation_e6tc2"]
 length = 0.001
@@ -130,8 +129,9 @@ size = Vector2(25, 25)
 script = ExtResource("1_tqm6u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905319261]
-position = Vector2(0, -1)
-shape = SubResource("CapsuleShape2D_ig48j")
+y_sort_enabled = true
+position = Vector2(0.25, 5)
+shape = SubResource("RectangleShape2D_e6tc2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1741844972]
 texture_filter = 1
@@ -164,7 +164,8 @@ vertical_alignment = 1
 autowrap_trim_flags = 128
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1392392694]
-zoom = Vector2(1.3, 1.3)
+texture_filter = 1
+zoom = Vector2(4, 4)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

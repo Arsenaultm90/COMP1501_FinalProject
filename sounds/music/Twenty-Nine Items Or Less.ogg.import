@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d0uj1wpvs3ba"
+path="res://.godot/imported/Twenty-Nine Items Or Less.ogg-cd0616a02825330cf901763b283d6a32.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/music/Twenty-Nine Items Or Less.ogg"
+dest_files=["res://.godot/imported/Twenty-Nine Items Or Less.ogg-cd0616a02825330cf901763b283d6a32.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

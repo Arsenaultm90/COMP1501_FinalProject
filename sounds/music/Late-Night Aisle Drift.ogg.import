@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://o7r8vuqusf1d"
+path="res://.godot/imported/Late-Night Aisle Drift.ogg-a8fb0a1dcce032200c00e6ebfed8279d.oggvorbisstr"
+
+[deps]
+
+source_file="res://sounds/music/Late-Night Aisle Drift.ogg"
+dest_files=["res://.godot/imported/Late-Night Aisle Drift.ogg-a8fb0a1dcce032200c00e6ebfed8279d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

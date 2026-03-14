@@ -1,7 +1,10 @@
 extends CanvasLayer
 
+signal time_changed(hour: int, minute: int)
+
 @onready var fade_rect: ColorRect = $FadeRect
 @onready var time_label: Label = $TimeLabel
+@onready var sound_fx : AudioStreamPlayer2D = $SoundFX
 
 var player = null
 var fade_time := 1.0
@@ -22,8 +25,8 @@ func _process(delta: float) -> void:
 	
 	second_accumulator += delta
 	
-	if second_accumulator >= 1.0:
-		second_accumulator -= 1.0
+	if second_accumulator >= 0.1:
+		second_accumulator -= 0.1
 		minute += 1
 		
 		if minute >= 60:
@@ -35,6 +38,7 @@ func _process(delta: float) -> void:
 				minute = 0
 				day_active = false
 		
+		time_changed.emit(hour, minute)
 		update_time_label()
 
 
@@ -71,8 +75,10 @@ func fade_to_scene(scene_path: String) -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.disable_controls()
-
+	
+	sound_fx.play()
 	await fade_out()
+	await sound_fx.finished
 	get_tree().change_scene_to_file(scene_path)
 	await get_tree().process_frame
 	await fade_in()
