@@ -1,10 +1,30 @@
 [gd_scene format=3 uid="uid://gxvg5wjcjuw4"]
 
 [ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="1_myx53"]
+[ext_resource type="Script" uid="uid://dwle63qqne3kb" path="res://scripts/gas_station_inside.gd" id="1_wc4td"]
+[ext_resource type="AudioStream" uid="uid://d0uj1wpvs3ba" path="res://sounds/music/Twenty-Nine Items Or Less.ogg" id="2_t3ur8"]
+[ext_resource type="Texture2D" uid="uid://j38f2fkeu5mv" path="res://art/environment/Gas station Inside.png" id="3_wc4td"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scx58"]
+size = Vector2(26, 111)
 
 [node name="GasInsideRoot" type="Node2D" unique_id=235580495]
+script = ExtResource("1_wc4td")
 
 [node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("1_myx53")]
-position = Vector2(272, 157)
+position = Vector2(0, 120)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1799344812]
+[node name="BGMusic" type="AudioStreamPlayer2D" parent="." unique_id=1799344812]
+stream = ExtResource("2_t3ur8")
+volume_db = -15.0
+
+[node name="GasStationInterior" type="StaticBody2D" parent="." unique_id=1328905058]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GasStationInterior" unique_id=823027318]
+position = Vector2(-155, 79.5)
+shape = SubResource("RectangleShape2D_scx58")
+
+[node name="Sprite2D" type="Sprite2D" parent="GasStationInterior" unique_id=407364411]
+texture = ExtResource("3_wc4td")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1712862468]

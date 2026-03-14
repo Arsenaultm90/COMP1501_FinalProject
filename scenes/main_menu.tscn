@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://bcluura3uih78"]
 
 [ext_resource type="Script" uid="uid://iu6o2hnemiul" path="res://scripts/main_menu.gd" id="1_ekxnf"]
-[ext_resource type="AudioStream" uid="uid://c13ini15gpx1d" path="res://sounds/music/Twilight in the Empty Town.ogg" id="1_l6cm7"]
+[ext_resource type="AudioStream" uid="uid://cdfo0q5byxjsy" path="res://sounds/music/MenuMusic.ogg" id="2_ekxnf"]
 
 [node name="MainMenu" type="Node2D" unique_id=523044609]
 script = ExtResource("1_ekxnf")
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="." unique_id=310959656]
-stream = ExtResource("1_l6cm7")
-volume_db = -10.0
+stream = ExtResource("2_ekxnf")
+volume_db = -5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1099318366]
 
@@ -21,10 +21,17 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.41568628)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1624033176]
-offset_left = 190.0
-offset_top = 72.0
-offset_right = 286.0
-offset_bottom = 173.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -70.75
+offset_right = 124.0
+offset_bottom = 70.75
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="NewGame" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1926783504]

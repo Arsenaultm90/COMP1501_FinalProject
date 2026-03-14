@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dk88kahs870dv" path="res://scripts/day_night_cycle.gd" id="4_udpx5"]
 [ext_resource type="Texture2D" uid="uid://ee5egjt47mlx" path="res://art/daynightcycle-gradient-texture.tres" id="5_7r1kg"]
 [ext_resource type="Texture2D" uid="uid://c0jsmtb3n3y3r" path="res://art/environment/Gas Station.png" id="6_bkgx0"]
+[ext_resource type="Texture2D" uid="uid://cswc5axwgeprm" path="res://art/environment/Road.png" id="7_uaw8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udpx5"]
 
@@ -29,7 +30,6 @@ shape = SubResource("RectangleShape2D_udpx5")
 texture = ExtResource("3_8lkp2")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2131039635]
-color = Color(0.08803957, 0.1037041, 0.4031897, 1)
 script = ExtResource("4_udpx5")
 gradient = ExtResource("5_7r1kg")
 
@@ -52,3 +52,25 @@ texture_filter = 1
 position = Vector2(-0.5, 1)
 texture = ExtResource("6_bkgx0")
 offset = Vector2(0, -20)
+
+[node name="Road" type="Node2D" parent="Level" unique_id=515716296]
+
+[node name="Road1" type="Sprite2D" parent="Level/Road" unique_id=254278947]
+position = Vector2(220, 333)
+texture = ExtResource("7_uaw8k")
+
+[node name="Road2" type="Sprite2D" parent="Level/Road" unique_id=721461074]
+position = Vector2(476, 333)
+texture = ExtResource("7_uaw8k")
+
+[node name="Road3" type="Sprite2D" parent="Level/Road" unique_id=119178316]
+position = Vector2(-36, 333)
+texture = ExtResource("7_uaw8k")
+
+[node name="Road4" type="Sprite2D" parent="Level/Road" unique_id=660823058]
+position = Vector2(-292, 333)
+texture = ExtResource("7_uaw8k")
+
+[node name="Road5" type="Sprite2D" parent="Level/Road" unique_id=152950338]
+position = Vector2(732, 333)
+texture = ExtResource("7_uaw8k")

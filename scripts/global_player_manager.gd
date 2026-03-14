@@ -18,6 +18,12 @@ func add_player_instance() -> void:
 
 
 func set_player_postion(spawn_node : Node2D, _new_pos : Vector2) -> void:
+	if not is_instance_valid(player):
+		add_player_instance()
+
+	if player.get_parent() != null:
+		player.get_parent().remove_child(player)
+		
 	player.global_position = _new_pos
 	spawn_node.add_child.call_deferred(player)
 	pass
