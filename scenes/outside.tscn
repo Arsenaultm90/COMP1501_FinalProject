@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cswc5axwgeprm" path="res://art/environment/Road.png" id="7_uaw8k"]
 [ext_resource type="Script" uid="uid://yso218ease0e" path="res://scripts/npc_dialogue_test.gd" id="8_5tstl"]
 [ext_resource type="Texture2D" uid="uid://c31kc1q1onwr5" path="res://art/character/prototype_character_red.png" id="8_lt5my"]
+[ext_resource type="Texture2D" uid="uid://dbpjl0vxwgxt1" path="res://art/ui/BrainNormal.png" id="10_lt7nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udpx5"]
 
@@ -106,3 +107,7 @@ position = Vector2(174, 38)
 texture = ExtResource("8_lt5my")
 hframes = 4
 vframes = 12
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1106238526]
+position = Vector2(106, 41)
+texture = ExtResource("10_lt7nq")

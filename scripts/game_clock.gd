@@ -6,6 +6,7 @@ var hour: int = 8
 var minute: int = 0
 var second_accumulator: float = 0.0
 var day_active: bool = true
+var blink_tween : Tween = null
 
 
 func _ready() -> void:
@@ -54,3 +55,18 @@ func format_time(h: int, m: int) -> String:
 		display_hour = h - 12
 	
 	return "%02d:%02d %s" % [display_hour, m, suffix]
+
+
+func pause_clock() -> void:
+	day_active = false
+	blink_tween = create_tween().set_loops()
+	blink_tween.tween_property(self, "modulate", Color(0.5, 0.5, 0.5), 1)
+	blink_tween.tween_property(self, "modulate", Color.WHITE, 1)
+
+
+func start_clock() -> void:
+	day_active = true
+	if blink_tween:
+		blink_tween.kill()
+		blink_tween = null
+	modulate = Color.WHITE

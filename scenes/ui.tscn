@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://5lg58a1j0bkb" path="res://art/fonts/superstar_memesbruh03.ttf" id="1_x4jx1"]
 [ext_resource type="Script" uid="uid://bok8wf7f3pb47" path="res://scripts/global_ui_manager.gd" id="1_yev5y"]
 [ext_resource type="Script" uid="uid://c7i01n1lhf7fj" path="res://scripts/pause_menu.gd" id="4_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://dbpjl0vxwgxt1" path="res://art/ui/BrainNormal.png" id="4_ktti3"]
+[ext_resource type="Texture2D" uid="uid://bikt4ph7vyk3g" path="res://art/ui/UI Clock.png" id="4_p7vwb"]
 [ext_resource type="Script" uid="uid://uhckk5glubap" path="res://scripts/text_box.gd" id="5_8dubc"]
 [ext_resource type="Texture2D" uid="uid://cdfjdn4h86n2t" path="res://art/dialogue/DialogueBox.png" id="6_p7vwb"]
 
@@ -19,11 +21,26 @@ theme_override_fonts/font = ExtResource("1_x4jx1")
 theme_override_font_sizes/font_size = 32
 text = "Press \"E\""
 
+[node name="ClockBG" type="Sprite2D" parent="." unique_id=1160897336]
+texture_filter = 1
+position = Vector2(184, 93)
+scale = Vector2(4, 4)
+texture = ExtResource("4_p7vwb")
+
+[node name="Brain" type="Sprite2D" parent="." unique_id=1920648636]
+texture_filter = 1
+position = Vector2(288, 97)
+scale = Vector2(4, 4)
+texture = ExtResource("4_ktti3")
+
 [node name="GameClock" type="Label" parent="." unique_id=804421774]
-offset_right = 40.0
-offset_bottom = 23.0
+z_index = 1
+offset_left = 6.0
+offset_top = 69.0
+offset_right = 46.0
+offset_bottom = 133.0
 theme_override_fonts/font = ExtResource("1_x4jx1")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 50
 script = ExtResource("1_nt7q6")
 
 [node name="PauseMenu" type="Control" parent="." unique_id=1158711880]

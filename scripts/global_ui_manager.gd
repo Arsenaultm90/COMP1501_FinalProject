@@ -24,6 +24,9 @@ func _process(delta: float) -> void:
 		)
 
 
+########################
+### INTERACT METHODS ###
+########################
 func show_interact_label(target : Node2D) -> void:
 	interact_label_target = target
 	player_interact_label.visible = true
@@ -38,6 +41,8 @@ func hide_interact_label() -> void:
 func start_dialogue(position : Vector2, lines : Array[String]) -> void:
 	if is_dialogue_active:
 		return
+	
+	game_clock.pause_clock()
 	
 	is_dialogue_active = true
 	dialogue_lines = lines
@@ -77,6 +82,8 @@ func _end_dialogue() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.enable_controls()
+	
+	game_clock.start_clock()
 
 
 func _unhandled_input(event: InputEvent) -> void:

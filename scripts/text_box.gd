@@ -17,9 +17,15 @@ func prepare_text(text_to_display: String) -> void:
 	text = ""
 	timer.stop()
 	
+	# Hide text box to avoid flickering
 	modulate.a = 0.0
 	
+	# Reset text box size and await flush before setting label text
 	custom_minimum_size = Vector2.ZERO
+	label.text = ""
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
 	size = Vector2.ZERO
 	label.text = text_to_display
 	
