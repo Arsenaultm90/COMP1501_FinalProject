@@ -7,11 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://ee5egjt47mlx" path="res://art/daynightcycle-gradient-texture.tres" id="5_7r1kg"]
 [ext_resource type="Texture2D" uid="uid://c0jsmtb3n3y3r" path="res://art/environment/Gas Station.png" id="6_bkgx0"]
 [ext_resource type="Texture2D" uid="uid://cswc5axwgeprm" path="res://art/environment/Road.png" id="7_uaw8k"]
+[ext_resource type="Script" uid="uid://yso218ease0e" path="res://scripts/npc_dialogue_test.gd" id="8_5tstl"]
+[ext_resource type="Texture2D" uid="uid://c31kc1q1onwr5" path="res://art/character/prototype_character_red.png" id="8_lt5my"]
+[ext_resource type="PackedScene" uid="uid://bxbqtmdapcak5" path="res://scenes/ui.tscn" id="10_lt7nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udpx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkgx0"]
 size = Vector2(148, 111)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lt5my"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tstl"]
+radius = 5.0
+height = 14.0
 
 [node name="OutsideRoot" type="Node2D" unique_id=851555587]
 y_sort_enabled = true
@@ -74,3 +85,27 @@ texture = ExtResource("7_uaw8k")
 [node name="Road5" type="Sprite2D" parent="Level/Road" unique_id=152950338]
 position = Vector2(732, 333)
 texture = ExtResource("7_uaw8k")
+
+[node name="NPCTest" type="CharacterBody2D" parent="." unique_id=1468004261 groups=["Interactable"]]
+
+[node name="NPCInteraction" type="Area2D" parent="NPCTest" unique_id=753055567 groups=["Interactable"]]
+position = Vector2(174, 38)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_5tstl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCTest/NPCInteraction" unique_id=1789053212 groups=["Interactable"]]
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_lt5my")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCTest" unique_id=91693070]
+position = Vector2(174, 38)
+shape = SubResource("CapsuleShape2D_5tstl")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCTest" unique_id=1796009721]
+position = Vector2(174, 38)
+texture = ExtResource("8_lt5my")
+hframes = 4
+vframes = 12
+
+[node name="UI" parent="." unique_id=1618172041 instance=ExtResource("10_lt7nq")]

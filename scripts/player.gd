@@ -28,7 +28,13 @@ func _physics_process(_delta: float) -> void:
 	if SetState() == true || SetDirection() == true:
 		UpdateAnimation()
 	
+	### NEED CHECK FOR ITEMS VS NPCS
 	if interact_target and Input.is_action_just_pressed("interact"):
+		controls_enabled = false
+		direction = Vector2.ZERO
+		SetState()
+		UpdateAnimation()
+		hide_prompt()
 		interact_target.interact()
 
 
@@ -76,7 +82,8 @@ func disable_controls() -> void:
 func enable_controls() -> void:
 	controls_enabled = true
 
-### Interact Methods
+
+### INTERACT METHODS
 func show_prompt():
 	interact_label.visible = true
 
