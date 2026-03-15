@@ -5,8 +5,8 @@ extends CanvasModulate
 @export var sunset_curve: float = 3.5
 
 func _ready() -> void:
-	SceneManager.time_changed.connect(update_from_time)
-	update_from_time(SceneManager.hour, SceneManager.minute)
+	GlobalUI.game_clock.time_changed.connect(update_from_time)
+	update_from_time(GlobalUI._get_day_hour(), GlobalUI._get_day_minute())
 
 func update_from_time(hour: int, minute: int) -> void:
 	var start_minutes := 8 * 60

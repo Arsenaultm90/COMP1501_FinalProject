@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 PlayerManager="*uid://dx8ky4qg78y4e"
 SceneManager="*uid://tvaeudywc4j4"
 DialogueManager="*uid://o0g1e8b7tkae"
-UiManager="*uid://bok8wf7f3pb47"
+GlobalUI="*uid://bxbqtmdapcak5"
 
 [display]
 

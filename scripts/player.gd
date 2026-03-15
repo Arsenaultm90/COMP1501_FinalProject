@@ -2,7 +2,6 @@ class_name Player extends CharacterBody2D
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite = $Sprite2D
-@onready var interact_label = $Area2D/InteractLabel
 @onready var interact_area = $Area2D
 
 var cardinal_direction : Vector2 = Vector2.DOWN
@@ -85,10 +84,10 @@ func enable_controls() -> void:
 
 ### INTERACT METHODS
 func show_prompt():
-	interact_label.visible = true
+	GlobalUI.show_interact_label(self)
 
 func hide_prompt():
-	interact_label.visible = false
+	GlobalUI.hide_interact_label()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Interactable"):

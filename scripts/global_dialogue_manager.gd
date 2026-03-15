@@ -2,7 +2,6 @@ extends Node
 
 var dialogue_lines : Array[String] = []
 var current_line_index : int = 0
-var text_box
 var text_box_pos : Vector2
 
 var is_dialogue_active : bool = false
@@ -19,10 +18,14 @@ func start_dialogue(position : Vector2, lines : Array[String]) -> void:
 	is_dialogue_active = true
 
 func _show_text_box() -> void:
-	UiManager._show_text_box()
-	text_box.finished_displaying.connect(_on_text_box_finished_displaying)
-	text_box.global_position = text_box_pos
-	text_box.display_text(dialogue_lines[current_line_index])
+	GlobalUI._show_text_box()
+	
+	if not GlobalUI.text_box.finished_displaying.is_connected(_on_text_box_finished_displaying):
+		GlobalUI.text_box.finished_displaying.connect(_on_text_box_finished_displaying)
+		
+	var screen_pos = get_viewport().get_canvas_transform() * text_box_pos
+	GlobalUI.text_box.position = screen_pos
+	await GlobalUI.text_box.display_text(dialogue_lines[current_line_index], screen_pos)
 	can_advance_line = false
 	
 func _on_text_box_finished_displaying() -> void:
@@ -34,13 +37,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		is_dialogue_active && 
 		can_advance_line
 	):
-		text_box.queue_free()
+		GlobalUI._hide_text_box()
 		
 		current_line_index += 1
 		if current_line_index >= dialogue_lines.size():
 			is_dialogue_active = false
 			current_line_index = 0
-			UiManager._hide_text_box()
+			GlobalUI._hide_text_box()
 			var player = get_tree().get_first_node_in_group("Player")
 			if player:
 				player.enable_controls()

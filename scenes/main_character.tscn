@@ -152,17 +152,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1785066846]
 shape = SubResource("RectangleShape2D_tqm6u")
 
-[node name="InteractLabel" type="Label" parent="Area2D" unique_id=1086933541]
-visible = false
-offset_left = -31.0
-offset_top = -33.0
-offset_right = 38.0
-offset_bottom = -10.0
-text = "Press \"E\""
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_trim_flags = 128
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1392392694]
 texture_filter = 1
 zoom = Vector2(4, 4)

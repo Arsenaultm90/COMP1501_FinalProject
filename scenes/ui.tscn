@@ -16,6 +16,7 @@ offset_left = -2.0
 offset_right = 67.0
 offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
 text = "Press \"E\""
 
 [node name="GameClock" type="Label" parent="." unique_id=804421774]
@@ -99,12 +100,14 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="TextBox/MarginContainer" unique_id=203315416]
+[node name="DialogueLabel" type="Label" parent="TextBox/MarginContainer" unique_id=203315416]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_x4jx1")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 32
 vertical_alignment = 1
 
 [node name="LetterDisplayTimer" type="Timer" parent="TextBox" unique_id=747576238]
 one_shot = true
+
+[connection signal="timeout" from="TextBox/LetterDisplayTimer" to="TextBox" method="_on_letter_display_timer_timeout"]

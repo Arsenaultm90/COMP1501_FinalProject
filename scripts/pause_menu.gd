@@ -33,7 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func show_pause_menu():
 	is_paused = true
-	SceneManager.day_active = false
 	player.disable_controls()
 	self.visible = true
 	save_button.grab_focus()
