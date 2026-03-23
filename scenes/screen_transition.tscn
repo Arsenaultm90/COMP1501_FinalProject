@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://tvaeudywc4j4"]
 
-[ext_resource type="Script" uid="uid://cmasfkhl3m8dr" path="res://scripts/global_scene_manager.gd" id="1_yu5p1"]
+[ext_resource type="Script" uid="uid://cmasfkhl3m8dr" path="res://scripts/singletons/global_scene_manager.gd" id="1_yu5p1"]
 [ext_resource type="AudioStream" uid="uid://cxat5v4lcwaap" path="res://sounds/fx/doorbell.mp3" id="2_5b10v"]
 
 [node name="ScreenTransition" type="CanvasLayer" unique_id=1510708910]

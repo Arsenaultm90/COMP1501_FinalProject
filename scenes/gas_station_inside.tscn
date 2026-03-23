@@ -4,9 +4,25 @@
 [ext_resource type="Script" uid="uid://dwle63qqne3kb" path="res://scripts/gas_station_inside.gd" id="1_wc4td"]
 [ext_resource type="AudioStream" uid="uid://d0uj1wpvs3ba" path="res://sounds/music/Twenty-Nine Items Or Less.ogg" id="2_t3ur8"]
 [ext_resource type="Texture2D" uid="uid://j38f2fkeu5mv" path="res://art/environment/Gas station Inside.png" id="3_wc4td"]
+[ext_resource type="Script" uid="uid://bmwq6ony4yaew" path="res://scripts/minigames/npc_mini_game_test.gd" id="5_1tja8"]
+[ext_resource type="Texture2D" uid="uid://dxddbnq7y0jx0" path="res://art/character/prototype_character_yellow.png" id="7_0lnkb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scx58"]
 size = Vector2(26, 111)
+
+[sub_resource type="Curve2D" id="Curve2D_wc4td"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 13, 121, 0, 0, 0, 0, 13, 76, 0, 0, 0, 0, -38, 74, 0, 0, 0, 0, -136, 70, 0, 0, 0, 0, -132, 94, 0, 0, 0, 0, -41, 108, 0, 0, 0, 0, -8, 116, 0, 0, 0, 0, -6, 133)
+}
+point_count = 8
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbyxs"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_12wu5"]
+radius = 5.0
+height = 14.0
 
 [node name="GasInsideRoot" type="Node2D" unique_id=235580495]
 script = ExtResource("1_wc4td")
@@ -28,3 +44,33 @@ shape = SubResource("RectangleShape2D_scx58")
 texture = ExtResource("3_wc4td")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1712862468]
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1637745404]
+curve = SubResource("Curve2D_wc4td")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=683198595]
+position = Vector2(13, 121)
+rotation = -1.5707964
+
+[node name="NPC_MiniGame_Test" type="CharacterBody2D" parent="." unique_id=156226178 groups=["Interactable"]]
+position = Vector2(-111, 47)
+
+[node name="NPCInteraction" type="Area2D" parent="NPC_MiniGame_Test" unique_id=191808631 groups=["Interactable"]]
+position = Vector2(1, -2)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_1tja8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_MiniGame_Test/NPCInteraction" unique_id=1217315463 groups=["Interactable"]]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_xbyxs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC_MiniGame_Test" unique_id=1437096532]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_12wu5")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPC_MiniGame_Test" unique_id=1641128342]
+position = Vector2(1, -2)
+texture = ExtResource("7_0lnkb")
+hframes = 4
+vframes = 12

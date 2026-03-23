@@ -1,0 +1,25 @@
+{
+	"start": "greeting",
+	"nodes": {
+		"greeting": {
+			"text": "Well, well. A stranger in these parts.",
+			"choices": [
+				{ "text": "I want to join your cause.", "next": "join_response", "flags": {"joined_cause": true} },
+				{ "text": "Just passing through.", "next": "passing_response" },
+				{ "text": "Goodbye.", "next": "end" }
+			]
+		},
+		"join_response": {
+			"text": "Bold choice. We could use someone like you.",
+			"next": "join_details"
+		},
+		"join_details": {
+			"text": "Meet us at the old mill tonight.",
+			"next": "end"
+		},
+		"passing_response": {
+			"text": "Sure you are. Everyone says that.",
+			"next": "end"
+		}
+	}
+}

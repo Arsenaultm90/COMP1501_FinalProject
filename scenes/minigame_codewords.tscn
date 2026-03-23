@@ -1,0 +1,303 @@
+[gd_scene format=3 uid="uid://bdbhsyl5qgr45"]
+
+[ext_resource type="Script" uid="uid://by7k6yhkhmpis" path="res://scripts/minigames/codewords/codewords_manager.gd" id="1_uhiff"]
+[ext_resource type="AudioStream" uid="uid://dkfknak1iprey" path="res://sounds/music/minigames/codewords/TwilightEscalation_Slow.ogg" id="2_jelnr"]
+[ext_resource type="FontFile" uid="uid://5lg58a1j0bkb" path="res://art/fonts/superstar_memesbruh03.ttf" id="2_onn7d"]
+[ext_resource type="AudioStream" uid="uid://4iu7obcst6yh" path="res://sounds/music/minigames/codewords/TwilightEscalation_Fast.ogg" id="3_22xag"]
+[ext_resource type="Texture2D" uid="uid://di3n8k48liorv" path="res://art/minigames/codewords/LimbicSystem.png" id="4_ei3qr"]
+[ext_resource type="Texture2D" uid="uid://b08wbt5aq3lut" path="res://art/minigames/codewords/Neurons.png" id="5_dx8uc"]
+[ext_resource type="Texture2D" uid="uid://qiye2lsqsci2" path="res://art/minigames/codewords/BasalGanglia.png" id="5_no65f"]
+[ext_resource type="Texture2D" uid="uid://dvwrkb08ekrbl" path="res://art/minigames/codewords/Thalamus.png" id="6_lwhw7"]
+[ext_resource type="Texture2D" uid="uid://b76h8mgidjc7u" path="res://art/minigames/codewords/Brainstem.png" id="7_boppk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dmav"]
+size = Vector2(250, 50)
+
+[sub_resource type="Gradient" id="Gradient_ei3qr"]
+offsets = PackedFloat32Array(0, 0.57228917, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_no65f"]
+gradient = SubResource("Gradient_ei3qr")
+fill = 1
+fill_from = Vector2(0.523913, 0.51304346)
+
+[node name="CodewordsRoot" type="Node2D" unique_id=1756263336]
+script = ExtResource("1_uhiff")
+slow_song = ExtResource("2_jelnr")
+fast_song = ExtResource("3_22xag")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1323914082]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="BrainUI" type="CanvasLayer" parent="." unique_id=656278411]
+
+[node name="WordContainer" type="Node2D" parent="BrainUI" unique_id=748967855]
+
+[node name="HitZone" type="HBoxContainer" parent="BrainUI" unique_id=1134701118]
+z_index = -1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -800.0
+offset_top = -148.0
+offset_right = 800.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 200
+
+[node name="LimbicSystem" type="Sprite2D" parent="BrainUI/HitZone" unique_id=1470244931]
+position = Vector2(123, 25)
+rotation = 3.1415925
+scale = Vector2(6.242667, 6.242667)
+texture = ExtResource("4_ei3qr")
+
+[node name="Thalamus" type="Sprite2D" parent="BrainUI/HitZone" unique_id=614462708]
+position = Vector2(583, 11.000001)
+scale = Vector2(5.5328918, 5.5328918)
+texture = ExtResource("6_lwhw7")
+
+[node name="BasalGanglia" type="Sprite2D" parent="BrainUI/HitZone" unique_id=1864552933]
+position = Vector2(1017, 9.999999)
+scale = Vector2(5.4751434, 5.4751434)
+texture = ExtResource("5_no65f")
+
+[node name="BrainStem" type="Sprite2D" parent="BrainUI/HitZone" unique_id=1104147181]
+position = Vector2(1474, 10)
+scale = Vector2(4.4830093, 4.4830093)
+texture = ExtResource("7_boppk")
+
+[node name="Hit_J" type="ColorRect" parent="BrainUI/HitZone" unique_id=1522321236]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0.78431374)
+
+[node name="Area2D" type="Area2D" parent="BrainUI/HitZone/Hit_J" unique_id=1417988713]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrainUI/HitZone/Hit_J/Area2D" unique_id=394017504]
+position = Vector2(125, 25)
+shape = SubResource("RectangleShape2D_7dmav")
+
+[node name="Label" type="Label" parent="BrainUI/HitZone/Hit_J" unique_id=1293962670]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -11.5
+offset_right = 2.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "J"
+
+[node name="Hit_I" type="ColorRect" parent="BrainUI/HitZone" unique_id=761862930]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0.78431374)
+
+[node name="Area2D" type="Area2D" parent="BrainUI/HitZone/Hit_I" unique_id=1363629838]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrainUI/HitZone/Hit_I/Area2D" unique_id=931097417]
+position = Vector2(125, 25)
+shape = SubResource("RectangleShape2D_7dmav")
+
+[node name="Label" type="Label" parent="BrainUI/HitZone/Hit_I" unique_id=1519946865]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -11.5
+offset_right = 2.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "I"
+
+[node name="Hit_K" type="ColorRect" parent="BrainUI/HitZone" unique_id=647294336]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0.78431374)
+
+[node name="Area2D" type="Area2D" parent="BrainUI/HitZone/Hit_K" unique_id=1612163810]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrainUI/HitZone/Hit_K/Area2D" unique_id=10997894]
+position = Vector2(125, 25)
+scale = Vector2(1, 0.8778061)
+shape = SubResource("RectangleShape2D_7dmav")
+
+[node name="Label" type="Label" parent="BrainUI/HitZone/Hit_K" unique_id=2034178842]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -11.5
+offset_right = 2.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "K"
+
+[node name="Hit_L" type="ColorRect" parent="BrainUI/HitZone" unique_id=1630330293]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0.78431374)
+
+[node name="Area2D" type="Area2D" parent="BrainUI/HitZone/Hit_L" unique_id=1969077836]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrainUI/HitZone/Hit_L/Area2D" unique_id=732420242]
+position = Vector2(125, 25)
+shape = SubResource("RectangleShape2D_7dmav")
+
+[node name="Label" type="Label" parent="BrainUI/HitZone/Hit_L" unique_id=1511308103]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -23.0
+offset_right = 9.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "L"
+
+[node name="Spawner" type="HBoxContainer" parent="BrainUI" unique_id=611369619]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -800.0
+offset_right = 800.0
+offset_bottom = 50.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 200
+
+[node name="Spawner1" type="ColorRect" parent="BrainUI/Spawner" unique_id=287832581]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Spawner2" type="ColorRect" parent="BrainUI/Spawner" unique_id=1028438962]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Spawner3" type="ColorRect" parent="BrainUI/Spawner" unique_id=407182806]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Spawner4" type="ColorRect" parent="BrainUI/Spawner" unique_id=887386738]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="QualityLabel" type="Label" parent="BrainUI" unique_id=785374144]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BrainSprite" type="Sprite2D" parent="BrainUI" unique_id=1242177759]
+
+[node name="Dialogue" type="Label" parent="BrainUI" unique_id=365157709]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_onn7d")
+theme_override_font_sizes/font_size = 64
+
+[node name="Light1" type="PointLight2D" parent="BrainUI" unique_id=640364627]
+position = Vector2(281.9123, 931.3819)
+rotation = 3.1415925
+scale = Vector2(4.143061, 4.131551)
+energy = 2.86
+blend_mode = 2
+texture = SubResource("GradientTexture2D_no65f")
+texture_scale = 1.44
+
+[node name="Light2" type="PointLight2D" parent="BrainUI" unique_id=1123807227]
+position = Vector2(741.9123, 931.3819)
+rotation = 3.1415925
+scale = Vector2(4.143061, 4.131551)
+energy = 2.86
+blend_mode = 2
+texture = SubResource("GradientTexture2D_no65f")
+texture_scale = 1.44
+
+[node name="Light3" type="PointLight2D" parent="BrainUI" unique_id=66403253]
+position = Vector2(1185.9124, 931.3819)
+rotation = 3.1415925
+scale = Vector2(4.143061, 4.131551)
+energy = 2.86
+blend_mode = 2
+texture = SubResource("GradientTexture2D_no65f")
+texture_scale = 1.44
+
+[node name="Light4" type="PointLight2D" parent="BrainUI" unique_id=464088394]
+position = Vector2(1635.9124, 931.3819)
+rotation = 3.1415925
+scale = Vector2(4.143061, 4.131551)
+energy = 2.86
+blend_mode = 2
+texture = SubResource("GradientTexture2D_no65f")
+texture_scale = 1.44
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=947481829]
+stream = ExtResource("2_jelnr")
+
+[node name="Neurons" type="Node2D" parent="." unique_id=1744304328]
+
+[node name="Neurons1" type="Sprite2D" parent="Neurons" unique_id=129693524]
+position = Vector2(278, 481)
+scale = Vector2(6.4601226, 6.4601226)
+texture = ExtResource("5_dx8uc")
+
+[node name="Neurons2" type="Sprite2D" parent="Neurons" unique_id=2021711062]
+position = Vector2(749, 481.00003)
+scale = Vector2(6.4601226, 6.4601226)
+texture = ExtResource("5_dx8uc")
+
+[node name="Neurons3" type="Sprite2D" parent="Neurons" unique_id=2118653422]
+position = Vector2(1190, 481.00003)
+scale = Vector2(6.4601226, 6.4601226)
+texture = ExtResource("5_dx8uc")
+
+[node name="Neurons4" type="Sprite2D" parent="Neurons" unique_id=506462363]
+position = Vector2(1644.0001, 477.00003)
+scale = Vector2(6.4601226, 6.4601226)
+texture = ExtResource("5_dx8uc")

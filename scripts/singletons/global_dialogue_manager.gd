@@ -3,19 +3,24 @@ extends Node
 var dialogue_lines : Array[String] = []
 var current_line_index : int = 0
 var text_box_pos : Vector2
+var custom_text_box = null
 
 var is_dialogue_active : bool = false
 var can_advance_line : bool = false
 
-func start_dialogue(position : Vector2, lines : Array[String]) -> void:
+func start_dialogue(position : Vector2, lines : Array[String],text_box = null) -> void:
 	if is_dialogue_active:
 		return
 	
+	custom_text_box = text_box
 	dialogue_lines = lines
 	text_box_pos = position
 	_show_text_box()
 	
 	is_dialogue_active = true
+
+func _get_text_box():
+	return custom_text_box if custom_text_box else GlobalUI.text_box
 
 func _show_text_box() -> void:
 	GlobalUI._show_text_box()
