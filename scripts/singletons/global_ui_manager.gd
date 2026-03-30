@@ -3,6 +3,8 @@ extends CanvasLayer
 @onready var player_interact_label : Label = $PlayerInteractLabel
 @onready var game_clock : Label = $GameClock
 @onready var text_box = $TextBox
+@onready var name_container = $NameTag
+@onready var name_label = $NameTag/NameLabel
 @onready var dialogue_label = $TextBox/VBoxContainer/DialogueLabel
 @onready var choice_box = $TextBox/VBoxContainer/ChoiceContainer
 @onready var choice_buttons: Array = [
@@ -67,20 +69,41 @@ func start_dialogue(position: Vector2, json_path: String) -> void:
 
 	is_dialogue_active = true
 	text_box_pos = position
-	current_node_id = dialogue_tree["start"]
+	current_node_id = _resolve_start()
 	game_clock.pause_clock()
 
 	if not text_box.finished_displaying.is_connected(_on_text_box_finished_displaying):
 		text_box.finished_displaying.connect(_on_text_box_finished_displaying)
 	_show_node(current_node_id)
 
+func _resolve_start() -> String:
+	if "conditional_start" in dialogue_tree:
+		for entry in dialogue_tree["conditional_start"]:
+			if "require_flag" in entry:
+				var has_it = _check_flag(entry["require_flag"])
+				if has_it:
+					return entry["node"]
+			else:
+				return entry["node"]
+	return dialogue_tree["start"]
 
 func _show_node(node_id: String) -> void:
 	if node_id == "end" or node_id == "":
 		_end_dialogue()
 		return
-	
+
 	var node = dialogue_tree["nodes"][node_id]
+	var dialogue_name = dialogue_tree["nodes"]["greeting"]["speaker"]
+
+	if node.has("flags"):
+		for flag_name in node["flags"]:
+			var flag_type = node["flags"][flag_name].get("type", "session")
+			if flag_type == "event":
+				FlagManager.set_event_flag(flag_name)
+			else:
+				FlagManager.set_session_flag(flag_name)
+			print("Flag set: ", flag_name, " type: ", flag_type)
+	
 	can_advance_line = false
 	is_preparing = true
 	text_box.visible = true
@@ -94,31 +117,46 @@ func _show_node(node_id: String) -> void:
 		screen_pos.x - text_box.size.x / 2.0,
 		screen_pos.y - text_box.size.y - 30.0
 	)
+	
+	name_label.text = dialogue_name
+	name_container.position = text_box.position + Vector2(5, -50)
+	name_container.visible = true
 	text_box.start_display(node["text"])
-
 
 func _on_text_box_finished_displaying() -> void:
 	can_advance_line = true
 	var node = dialogue_tree["nodes"][current_node_id]
 	if node.has("choices"):
-		text_box.show_choices(node["choices"])
+		var valid_choices = node["choices"].filter(func(c):
+			if c.has("require_flag"):
+				return _check_flag(c["require_flag"])
+			return true
+		)
+		text_box.show_choices(valid_choices)
+		name_container.visible = false
 
 
 func _on_choice_selected(index: int) -> void:
 	var node = dialogue_tree["nodes"][current_node_id]
 	var next_id = node["choices"][index].get("next", "end")
 	var choice = node["choices"][index]
-	
+
 	if choice.has("flags"):
 		for flag_name in choice["flags"]:
-			PlayerManager.data.set_flag(flag_name, choice["flags"][flag_name])
-	
+			var flag_type = choice["flags"][flag_name].get("type", "session")
+			var flag_value = choice["flags"][flag_name].get("value", true)
+			if flag_type == "event":
+				FlagManager.set_event_flag(flag_name)
+			else:
+				FlagManager.set_session_flag(flag_name)
+			
+			PlayerManager.data.set_flag(flag_name, flag_value)
+
 	if next_id == null or next_id == "":
 		_end_dialogue()
 		return
 	current_node_id = next_id
 	_show_node(current_node_id)
-
 
 func _show_choices(choices: Array) -> void:
 	choice_box.position = Vector2(
@@ -138,7 +176,6 @@ func _show_choices(choices: Array) -> void:
 		else:
 			choice_buttons[i].visible = false
 
-
 func _end_dialogue() -> void:
 	is_dialogue_active = false
 	can_advance_line = false
@@ -146,6 +183,7 @@ func _end_dialogue() -> void:
 	dialogue_tree = {}
 	text_box.visible = false
 	text_box.hide_choices()
+	name_container.visible = false
 	
 	if text_box.finished_displaying.is_connected(_on_text_box_finished_displaying):
 		text_box.finished_displaying.disconnect(_on_text_box_finished_displaying)
@@ -154,7 +192,6 @@ func _end_dialogue() -> void:
 	if player:
 		player.enable_controls()
 	game_clock.start_clock()
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("advance_dialogue") or not is_dialogue_active:
@@ -171,10 +208,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		current_node_id = node["next"]
 		_show_node(current_node_id)
 
+func _check_flag(flag: String) -> bool:
+	return FlagManager.has_session_flag(flag) or FlagManager.has_event_flag(flag)
 
 func _show_text_box() -> void:
 	text_box.visible = true;
-
 
 func _hide_text_box() -> void:
 	text_box.visible = false

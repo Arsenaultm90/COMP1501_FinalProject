@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cng4xiqsu23ep"]
+
+[ext_resource type="Script" uid="uid://5jfkpu72m43k" path="res://scripts/minigames/pipedream/supply_item.gd" id="1_gy1al"]
+[ext_resource type="Texture2D" uid="uid://c81xliw78gl1r" path="res://art/minigames/pipedream/Product.png" id="2_neldb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy1al"]
+
+[node name="SupplyItem" type="Area2D" unique_id=1913470583]
+script = ExtResource("1_gy1al")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1909621256]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_neldb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1831964909]
+shape = SubResource("RectangleShape2D_gy1al")

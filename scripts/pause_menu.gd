@@ -24,7 +24,7 @@ func show_pause_menu() -> void:
 
 func hide_pause_menu() -> void:
 	is_paused = false
-	SceneManager.day_active = true
+	#SceneManager.day_active = true
 	player.enable_controls()
 	self.visible = false
 

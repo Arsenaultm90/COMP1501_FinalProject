@@ -1,0 +1,73 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "frank_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Frank",
+			"text": "You got a good face. Not many people got a good face around here.",
+			"choices": [
+				{ "text": "Uh... thanks Frank.", "next": "thanks" },
+				{ "text": "What does that mean?", "next": "what_means" },
+				{ "text": "You doing alright out here?", "next": "alright" }
+			]
+		},
+		"thanks": {
+			"speaker": "Frank",
+			"text": "Don't thank me yet.",
+			"next": "pause"
+		},
+		"what_means": {
+			"speaker": "Frank",
+			"text": "Means what it means. Some folks got a face that's all the way theirs. Yours is almost there.",
+			"next": "pause"
+		},
+		"alright": {
+			"speaker": "Frank",
+			"text": "Better than most days. Worse than some. I get by.",
+			"next": "pause"
+		},
+		"pause": {
+			"speaker": "Frank",
+			"text": "You ever get the feeling you're waiting for something? Can't say what. Just... waiting.",
+			"choices": [
+				{ "text": "Sometimes, yeah.", "next": "sometimes" },
+				{ "text": "Not really.", "next": "not_really" },
+				{ "text": "What are you waiting for Frank?", "next": "frank_waiting" }
+			]
+		},
+		"sometimes": {
+			"speaker": "Frank",
+			"text": "That's normal. For now.",
+			"next": "farewell"
+		},
+		"not_really": {
+			"speaker": "Frank",
+			"text": "You will.",
+			"next": "farewell"
+		},
+		"frank_waiting": {
+			"speaker": "Frank",
+			"text": "Me? I'm done waiting. Already found what I was looking for. Took a while though. Long while.",
+			"next": "farewell",
+			"flags": {
+				"frank_hinted": { "type": "event", "value": true }
+			}
+		},
+		"farewell": {
+			"speaker": "Frank",
+			"text": "You come talk to me anytime. I'll be right here.",
+			"flags": {
+				"frank_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Frank",
+			"text": "Back again. Good. Sit a spell if you want.",
+			"next": "end"
+		}
+	}
+}

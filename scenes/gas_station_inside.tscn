@@ -6,9 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://j38f2fkeu5mv" path="res://art/environment/Gas station Inside.png" id="3_wc4td"]
 [ext_resource type="Script" uid="uid://bmwq6ony4yaew" path="res://scripts/minigames/npc_mini_game_test.gd" id="5_1tja8"]
 [ext_resource type="Texture2D" uid="uid://dxddbnq7y0jx0" path="res://art/character/prototype_character_yellow.png" id="7_0lnkb"]
+[ext_resource type="Script" uid="uid://bhkfyfm6pdj3d" path="res://scripts/transitions/in_to_out.gd" id="7_g8hj6"]
+[ext_resource type="Script" uid="uid://decvykwyhwkxl" path="res://scripts/transitions/in_to_basement.gd" id="8_iy6nn"]
+[ext_resource type="Script" uid="uid://hhnp0p8lnysh" path="res://scripts/transitions/in_to_office.gd" id="9_0lnkb"]
+[ext_resource type="Texture2D" uid="uid://dmigil3q4lvsq" path="res://art/environment/ATM.png" id="10_2cc7h"]
+[ext_resource type="Texture2D" uid="uid://dslvkx7y3t03p" path="res://art/environment/Food cart.png" id="11_d3jkw"]
+[ext_resource type="Texture2D" uid="uid://dvy8d7iv5ejmq" path="res://art/environment/ShelfFood.png" id="11_pch3y"]
+[ext_resource type="Texture2D" uid="uid://cjffbwgmhb7ec" path="res://art/environment/Hotdog cart.png" id="12_pch3y"]
+[ext_resource type="Texture2D" uid="uid://cqfjgvosum82d" path="res://art/environment/Shelf.png" id="13_i4feq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scx58"]
 size = Vector2(26, 111)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pch3y"]
+size = Vector2(74, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4feq"]
+size = Vector2(15, 84)
 
 [sub_resource type="Curve2D" id="Curve2D_wc4td"]
 _data = {
@@ -24,11 +38,46 @@ height = 8.0
 radius = 5.0
 height = 14.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lnkb"]
+size = Vector2(20, 272)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_njx5g"]
+size = Vector2(519, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbyxs"]
+size = Vector2(20, 271)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12wu5"]
+size = Vector2(520, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tja8"]
+size = Vector2(19, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_any7l"]
+size = Vector2(72, 23.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cc7h"]
+size = Vector2(135, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3jkw"]
+size = Vector2(19, 20)
+
 [node name="GasInsideRoot" type="Node2D" unique_id=235580495]
+z_index = -1
+y_sort_enabled = true
 script = ExtResource("1_wc4td")
 
-[node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("1_myx53")]
-position = Vector2(0, 120)
+[node name="PlayerSpawnerFromOutside" parent="." unique_id=398890483 instance=ExtResource("1_myx53")]
+position = Vector2(0, 145)
+script = null
+
+[node name="PlayerSpawnerFromBasement" parent="." unique_id=1000831282 instance=ExtResource("1_myx53")]
+position = Vector2(-191, -93)
+script = null
+
+[node name="PlayerSpawnerFromOffice" parent="." unique_id=168819551 instance=ExtResource("1_myx53")]
+position = Vector2(200, -93)
+script = null
 
 [node name="BGMusic" type="AudioStreamPlayer2D" parent="." unique_id=1799344812]
 stream = ExtResource("2_t3ur8")
@@ -37,13 +86,20 @@ volume_db = -15.0
 [node name="GasStationInterior" type="StaticBody2D" parent="." unique_id=1328905058]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GasStationInterior" unique_id=823027318]
-position = Vector2(-155, 79.5)
+position = Vector2(-155, 106)
 shape = SubResource("RectangleShape2D_scx58")
 
 [node name="Sprite2D" type="Sprite2D" parent="GasStationInterior" unique_id=407364411]
+z_index = -1
 texture = ExtResource("3_wc4td")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1712862468]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GasStationInterior" unique_id=1985070745]
+position = Vector2(-204, 152)
+shape = SubResource("RectangleShape2D_pch3y")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="GasStationInterior" unique_id=1309354642]
+position = Vector2(-235.5, 89)
+shape = SubResource("RectangleShape2D_i4feq")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1637745404]
 curve = SubResource("Curve2D_wc4td")
@@ -74,3 +130,167 @@ position = Vector2(1, -2)
 texture = ExtResource("7_0lnkb")
 hframes = 4
 vframes = 12
+
+[node name="Barriers" type="StaticBody2D" parent="." unique_id=1211509491]
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Barriers" unique_id=28401191]
+position = Vector2(-250, 26)
+shape = SubResource("RectangleShape2D_0lnkb")
+
+[node name="TopCollision" type="CollisionShape2D" parent="Barriers" unique_id=1836917220]
+position = Vector2(0.5, -119)
+shape = SubResource("RectangleShape2D_njx5g")
+
+[node name="RightCollision" type="CollisionShape2D" parent="Barriers" unique_id=1578962827]
+position = Vector2(250, 25.5)
+shape = SubResource("RectangleShape2D_xbyxs")
+
+[node name="BottomCollision" type="CollisionShape2D" parent="Barriers" unique_id=1641953123]
+position = Vector2(1, 171)
+shape = SubResource("RectangleShape2D_12wu5")
+
+[node name="Transitions" type="Node2D" parent="." unique_id=1740584961]
+
+[node name="InToOut" type="Area2D" parent="Transitions" unique_id=1382549101 groups=["Interactable"]]
+position = Vector2(0, 160)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("7_g8hj6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/InToOut" unique_id=1850282821 groups=["Interactable"]]
+shape = SubResource("RectangleShape2D_1tja8")
+
+[node name="InToBasement" type="Area2D" parent="Transitions" unique_id=303343354 groups=["Interactable"]]
+position = Vector2(-191, -113)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_iy6nn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/InToBasement" unique_id=1638314178 groups=["Interactable"]]
+position = Vector2(-1, 5)
+shape = SubResource("RectangleShape2D_1tja8")
+
+[node name="InToOffice" type="Area2D" parent="Transitions" unique_id=1562031843 groups=["Interactable"]]
+position = Vector2(199, -108)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9_0lnkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transitions/InToOffice" unique_id=896216208 groups=["Interactable"]]
+position = Vector2(1.5, -1)
+shape = SubResource("RectangleShape2D_1tja8")
+
+[node name="Environment" type="Node2D" parent="." unique_id=1770628025]
+y_sort_enabled = true
+
+[node name="Shelf" type="StaticBody2D" parent="Environment" unique_id=938813811]
+position = Vector2(-33, 66)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Shelf" unique_id=526781515]
+position = Vector2(1, 8.75)
+shape = SubResource("RectangleShape2D_any7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Shelf" unique_id=518595871]
+position = Vector2(0, -10)
+texture = ExtResource("13_i4feq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Shelf" unique_id=1409915643]
+texture = ExtResource("11_pch3y")
+
+[node name="Shelf2" type="StaticBody2D" parent="Environment" unique_id=1026148463]
+position = Vector2(45, 66)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Shelf2" unique_id=1210193220]
+position = Vector2(1, 8.75)
+shape = SubResource("RectangleShape2D_any7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Shelf2" unique_id=40066772]
+position = Vector2(0, -10)
+texture = ExtResource("13_i4feq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Shelf2" unique_id=1232583523]
+texture = ExtResource("11_pch3y")
+flip_h = true
+
+[node name="Shelf3" type="StaticBody2D" parent="Environment" unique_id=548977406]
+position = Vector2(123, 66)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Shelf3" unique_id=117508007]
+position = Vector2(1, 8.75)
+shape = SubResource("RectangleShape2D_any7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Shelf3" unique_id=721502770]
+position = Vector2(0, -10)
+texture = ExtResource("13_i4feq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Shelf3" unique_id=281141126]
+texture = ExtResource("11_pch3y")
+
+[node name="Shelf4" type="StaticBody2D" parent="Environment" unique_id=1778012610]
+position = Vector2(-33, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Shelf4" unique_id=1585658928]
+position = Vector2(1, 8.75)
+shape = SubResource("RectangleShape2D_any7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Shelf4" unique_id=1908141370]
+position = Vector2(0, -10)
+texture = ExtResource("13_i4feq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Shelf4" unique_id=791742002]
+texture = ExtResource("11_pch3y")
+
+[node name="Shelf5" type="StaticBody2D" parent="Environment" unique_id=1250512425]
+position = Vector2(45, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Shelf5" unique_id=1263799873]
+position = Vector2(1, 8.75)
+shape = SubResource("RectangleShape2D_any7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Shelf5" unique_id=1131896195]
+position = Vector2(0, -10)
+texture = ExtResource("13_i4feq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Shelf5" unique_id=1114049747]
+texture = ExtResource("11_pch3y")
+flip_h = true
+
+[node name="Shelf6" type="StaticBody2D" parent="Environment" unique_id=121680124]
+position = Vector2(123, -25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Shelf6" unique_id=1540218429]
+position = Vector2(1, 8.75)
+shape = SubResource("RectangleShape2D_any7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Shelf6" unique_id=1458834109]
+position = Vector2(0, -10)
+texture = ExtResource("13_i4feq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/Shelf6" unique_id=1222517106]
+texture = ExtResource("11_pch3y")
+
+[node name="HotdogCart" type="StaticBody2D" parent="Environment" unique_id=2027618996]
+position = Vector2(-2, -96)
+
+[node name="HotdogCart" type="Sprite2D" parent="Environment/HotdogCart" unique_id=635918079]
+position = Vector2(2, -16)
+texture = ExtResource("12_pch3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/HotdogCart" unique_id=2030578358]
+position = Vector2(37.5, -1.5)
+shape = SubResource("RectangleShape2D_2cc7h")
+
+[node name="FoodCart" type="Sprite2D" parent="Environment/HotdogCart" unique_id=1706232251]
+position = Vector2(73, -8)
+texture = ExtResource("11_d3jkw")
+
+[node name="ATM" type="StaticBody2D" parent="Environment" unique_id=753976975]
+position = Vector2(-97, -103)
+
+[node name="Atm" type="Sprite2D" parent="Environment/ATM" unique_id=904691121]
+position = Vector2(0, -9)
+texture = ExtResource("10_2cc7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ATM" unique_id=899510897]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_d3jkw")

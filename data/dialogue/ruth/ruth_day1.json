@@ -1,0 +1,73 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "ruth_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Ruth",
+			"text": "Cid! I brought you something. Don't you dare say you already ate.",
+			"choices": [
+				{ "text": "Ruth you didn't have to do that.", "next": "grateful" },
+				{ "text": "You're a lifesaver.", "next": "lifesaver" },
+				{ "text": "I actually already ate.", "next": "already_ate" }
+			]
+		},
+		"grateful": {
+			"speaker": "Ruth",
+			"text": "I know I didn't have to. That's why I did it. Now eat.",
+			"next": "check_in"
+		},
+		"lifesaver": {
+			"speaker": "Ruth",
+			"text": "Oh hush. It's just leftover cornbread and some soup. Eat it while it's warm.",
+			"next": "check_in"
+		},
+		"already_ate": {
+			"speaker": "Ruth",
+			"text": "No you didn't. I can tell. Eat.",
+			"next": "check_in"
+		},
+		"check_in": {
+			"speaker": "Ruth",
+			"text": "You sleeping alright? You look a little pale.",
+			"choices": [
+				{ "text": "I'm fine, just tired.", "next": "tired" },
+				{ "text": "Had some strange dreams actually.", "next": "dreams" },
+				{ "text": "Never better.", "next": "never_better" }
+			]
+		},
+		"tired": {
+			"speaker": "Ruth",
+			"text": "Make sure you're eating proper then. Body can't rest right on an empty stomach.",
+			"next": "farewell"
+		},
+		"dreams": {
+			"speaker": "Ruth",
+			"text": "Dreams are just the mind sorting itself out. Nothing to worry about honey.",
+			"next": "farewell",
+			"flags": {
+				"cid_mentioned_dreams_ruth": { "type": "event", "value": true }
+			}
+		},
+		"never_better": {
+			"speaker": "Ruth",
+			"text": "Good. That's what I like to hear. You let me know if you need anything.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Ruth",
+			"text": "I'll come by tomorrow. You need anything from the diner, you just say the word.",
+			"flags": {
+				"ruth_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Ruth",
+			"text": "Bowl's still warm if you haven't finished it.",
+			"next": "end"
+		}
+	}
+}

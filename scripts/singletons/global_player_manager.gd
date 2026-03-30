@@ -19,28 +19,37 @@ var player : Player
 var player_spawned : bool = false
 var level_node : Node2D
 var data: PlayerData = PlayerData.new()
+var prev_player_pos: Vector2
+var pipe_dream_level: int = 1
 
 
 func _ready() -> void:
 	add_player_instance()
 
-
 func add_player_instance() -> void:
 	player = PLAYER.instantiate()
 	pass
 
-
-func set_player_postion(spawn_node : Node2D, _new_pos : Vector2) -> void:
+func set_player_postion(_new_pos : Vector2) -> void:
 	if not is_instance_valid(player):
 		add_player_instance()
 
 	if player.get_parent() != null:
 		player.get_parent().remove_child(player)
-		
-	player.global_position = _new_pos
-	spawn_node.add_child.call_deferred(player)
-	pass
+	
+	var do_spawn = func():
+		if player.get_parent() != null:
+			player.get_parent().remove_child(player)
+		get_tree().current_scene.add_child(player)
+		player.global_position = _new_pos
+	
+	do_spawn.call_deferred()
 
+func set_prev_player_pos(player_pos: Vector2) -> void:
+	prev_player_pos = player_pos
+
+func get_prev_player_pos() -> Vector2:
+	return prev_player_pos
 
 ### SAVE/LOAD FUNCTIONS
 func set_flag(key: String, value: bool) -> void:

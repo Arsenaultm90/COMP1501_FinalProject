@@ -1,0 +1,92 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "earl_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Earl",
+			"text": "Mornin'! Just the usual, if you don't mind. Black, no sugar.",
+			"choices": [
+				{ "text": "Coming right up, Earl.", "next": "thanks" },
+				{ "text": "Rough morning?", "next": "rough_morning" },
+				{ "text": "You're in early today.", "next": "early" }
+			]
+		},
+		"thanks": {
+			"speaker": "Earl",
+			"text": "You're a good kid, Cid. This town's lucky to have you.",
+			"next": "small_talk"
+		},
+		"rough_morning": {
+			"speaker": "Earl",
+			"text": "Nah, not at all. Just like to get the day started right. Coffee, fresh air, friendly faces.",
+			"next": "small_talk"
+		},
+		"early": {
+			"speaker": "Earl",
+			"text": "Always am. Old habit. Shop doesn't open till ten but I'm up at five regardless.",
+			"next": "small_talk"
+		},
+		"small_talk": {
+			"speaker": "Earl",
+			"text": "How long you been here now, Cid? Three years? Four?",
+			"choices": [
+				{ "text": "About four years now.", "next": "four_years" },
+				{ "text": "Feels like forever honestly.", "next": "forever" },
+				{ "text": "I don't really keep track.", "next": "no_track" }
+			]
+		},
+		"four_years": {
+			"speaker": "Earl",
+			"text": "Four years. Time flies. You ever think about moving on? Seeing more of the world?",
+			"choices": [
+				{ "text": "Sometimes. But I like it here.", "next": "likes_it" },
+				{ "text": "Not really. This feels like home.", "next": "home" },
+				{ "text": "Funny you ask. Something keeps me here.", "next": "something_keeps" }
+			]
+		},
+		"forever": {
+			"speaker": "Earl",
+			"text": "Ha. That's what most folks say. Something about this town just... settles into you.",
+			"next": "farewell"
+		},
+		"no_track": {
+			"speaker": "Earl",
+			"text": "Smart man. Live in the present. That's the way to do it.",
+			"next": "farewell"
+		},
+		"likes_it": {
+			"speaker": "Earl",
+			"text": "Nothing wrong with that. Quiet life's an honest life.",
+			"next": "farewell"
+		},
+		"home": {
+			"speaker": "Earl",
+			"text": "That's good to hear. Real good.",
+			"next": "farewell"
+		},
+		"something_keeps": {
+			"speaker": "Earl",
+			"text": "Ha. Mountain air'll do that. Hard to leave once it gets in your lungs.",
+			"next": "farewell",
+			"flags": {
+				"cid_mentioned_staying": { "type": "event", "value": true }
+			}
+		},
+		"farewell": {
+			"speaker": "Earl",
+			"text": "Well, I best get back before Mrs. Patterson shows up for her trim. You take care now, Cid.",
+			"flags": {
+				"earl_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Earl",
+			"text": "Still holding down the fort I see. Good man.",
+			"next": "end"
+		}
+	}
+}

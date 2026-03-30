@@ -1,28 +1,62 @@
 {
 	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "talked_to", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
 	"nodes": {
 		"greeting": {
-			"text": "Well, well. A stranger in these parts.",
+			"speaker": "Rick",
+			"text": "Well, how's the kid today?",
 			"choices": [
-				{ "text": "Just passing through.", "next": "passing_through" },
-				{ "text": "I need information.", "next": "information" },
-				{ "text": "Goodbye.", "next": "end" }
+				{ "text": "Same as everyday, Rick", "next": "neutral" },
+				{ "text": "Oh, I can't complain. You?", "next": "friendly" },
+				{ "text": "Feeling more tired than usual", "next": "personal" }
 			]
 		},
-		"passing_through": {
-			"text": "Sure you are. Everyone says that.",
-			"next": "end"
-		},
-		"information": {
-			"text": "Information costs coin around here.",
+		"neutral": {
+			"text": "Ain't nothing wrong with a little consistency.",
 			"choices": [
-				{ "text": "Fine, here's some coin.", "next": "paid" },
-				{ "text": "Never mind.", "next": "end" }
+				{ "text": "Wouldn't kill to have a little excitement here.", "next": "excitement" },
+				{ "text": "I suppose so", "next": "farewell" }
 			]
 		},
-		"paid": {
-			"text": "Smart choice. Head north, avoid the mines.",
+		"excitement": {
+			"text": "Careful what you wish for.",
+			"next": "farewell"
+		},
+		"friendly": {
+			"text": "Sun shinin', air is clean, and my drone's coming in today.",
+			"next": "friendly_next"
+		},
+		"friendly_next": {
+			"text": "If you see it outside ther', go on and bring it to the office.",
+			"next": "farewell"
+		},
+		"personal": {
+			"text": "Sleep's the easiest part of your day.",
+			"choices": [
+				{ "text": "Dreams a bit more vivid than usual", "next": "dreams" },
+				{ "text": "I would have thought the same.", "next": "farewell" }
+			]
+		},
+		"dreams": {
+			"text": "Most folks feel that way after living here for a bit.",
+			"next": "farewell",
+			"flags": {
+				"rick_suspicion": { "type": "event", "value": true }
+			}
+		},
+		"greeting_return": {
+			"text": "Well, go on and watch the till.",
 			"next": "end"
+		},
+		"farewell": {
+			"text": "'bout time to start the day now. I'll talk to you later.",
+			"next": "end",
+			"flags": {
+				"talked_to": { "type": "session", "value": true }
+			}
 		}
 	}
 }

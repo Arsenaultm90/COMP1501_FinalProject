@@ -1,6 +1,6 @@
 extends Node2D
 
-enum Phase { SLOW, DIALOGUE, FAST }
+enum Phase { SLOW, DIALOGUE, FAST, END }
 var current_phase: Phase = Phase.SLOW
 
 @export var slow_song: AudioStream
@@ -29,9 +29,7 @@ var minigame_dialogue: Array[String] = [
 	"Listen slowly... Deepen your breaths...",
 	"No questions, no thoughts, no mind",
 	"The sounds are noise, hear only my words.",
-	"And when we arrive, we wake up...",
-	"wake up...",
-	"Wake up!!!"
+	"And when we arrive, we wake up..."
 ]
 
 var beat_interval: float
@@ -48,6 +46,7 @@ var spawn_timer: float = 0.0
 var spawn_interval: float = 1.5
 var current_dialogue_index: int = 0
 var can_advance: bool = false
+var returning: bool = false
 
 @onready var hit_zones: Array = [
 	$BrainUI/HitZone/Hit_J,
@@ -74,6 +73,13 @@ func _ready():
 func _process(_delta):
 	song_pos = music.get_playback_position()
 	
+	### TESTING SCENE TRANSITIONS
+	if current_phase == Phase.END:
+		if not returning:
+			returning = true
+			return_to_game()
+		return
+		
 	if not spawning_active:
 		return
 		
@@ -83,6 +89,12 @@ func _process(_delta):
 	if current_phase == Phase.FAST:
 		if song_pos >= song_length - fall_duration:
 			return
+	
+	if current_phase == Phase.FAST and not music.playing:
+		if not returning:
+			returning = true
+			return_to_game()
+		return
 	
 	if song_pos >= next_spawn_time:
 		beat_count += 1
@@ -267,3 +279,8 @@ func _unhandled_input(event: InputEvent):
 			start_fast()
 		else:
 			_show_dialogue_line()
+
+func return_to_game() -> void:
+	$BrainUI.visible = false
+	PlayerManager.player_spawned = false
+	SceneManager.fade_to_scene("res://scenes/gas_station_inside.tscn", "Minigame")

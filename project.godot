@@ -24,6 +24,8 @@ buses/default_bus_layout="uid://dyuqgwn8uqdf6"
 PlayerManager="*uid://dx8ky4qg78y4e"
 SceneManager="*uid://tvaeudywc4j4"
 DialogueManager="*uid://o0g1e8b7tkae"
+FlagManager="*uid://bfye5fc1knq3s"
+PipeData="*uid://cljv6comvjny5"
 GlobalUI="*uid://bxbqtmdapcak5"
 
 [display]

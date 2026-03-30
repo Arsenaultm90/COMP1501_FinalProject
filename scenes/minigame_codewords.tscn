@@ -28,6 +28,7 @@ slow_song = ExtResource("2_jelnr")
 fast_song = ExtResource("3_22xag")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1323914082]
+visible = false
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1920.0
 offset_bottom = 1080.0

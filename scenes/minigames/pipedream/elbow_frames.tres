@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bxwiymxkcidbg"]
+
+[ext_resource type="Texture2D" uid="uid://b6b2i8oboqh3t" path="res://art/minigames/pipedream/elbow.png" id="1_fx4ex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8k1l"]
+atlas = ExtResource("1_fx4ex")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjhqc"]
+atlas = ExtResource("1_fx4ex")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lq7mw"]
+atlas = ExtResource("1_fx4ex")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7ow8"]
+atlas = ExtResource("1_fx4ex")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlv84"]
+atlas = ExtResource("1_fx4ex")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8k1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjhqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lq7mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7ow8")
+}],
+"loop": true,
+"name": &"flow",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlv84")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

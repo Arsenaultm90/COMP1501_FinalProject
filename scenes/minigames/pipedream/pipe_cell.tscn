@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://sk87rqdrhf3f"]
+
+[ext_resource type="Texture2D" uid="uid://c3u86d131iaky" path="res://art/minigames/pipedream/GridBG.png" id="1_34ruv"]
+[ext_resource type="Script" uid="uid://l1yo8h6epj42" path="res://scripts/minigames/pipedream/pipe_cell.gd" id="1_nlv84"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nlv84"]
+
+[node name="PipeCell" type="TextureRect" unique_id=998188823]
+custom_minimum_size = Vector2(80, 80)
+mouse_filter = 0
+texture = ExtResource("1_34ruv")
+script = ExtResource("1_nlv84")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1584372456]
+position = Vector2(40, 40)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_nlv84")

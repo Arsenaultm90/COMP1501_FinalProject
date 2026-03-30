@@ -6,7 +6,7 @@ func _ready() -> void:
 	visible = false
 	
 	if PlayerManager.player_spawned == false:
-		PlayerManager.set_player_postion(level_node, global_position)
+		PlayerManager.set_player_postion(global_position)
 		PlayerManager.player_spawned = true
 	
 	pass

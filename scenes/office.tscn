@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://wl78s2yp85br"]
+
+[ext_resource type="Texture2D" uid="uid://d3n3pvoq8gaku" path="res://art/environment/Office.png" id="1_3e7dm"]
+[ext_resource type="Script" uid="uid://c8vi3781a3woy" path="res://office.gd" id="1_7jj4f"]
+[ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="2_n0wcf"]
+[ext_resource type="Script" uid="uid://cenrbyw3ul421" path="res://scripts/transitions/office_to_in.gd" id="3_jwaux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0wcf"]
+size = Vector2(20, 272)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwaux"]
+size = Vector2(519, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jj4f"]
+size = Vector2(20, 271)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qphb6"]
+size = Vector2(520, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hub07"]
+size = Vector2(19, 5.5)
+
+[node name="Office" type="Node2D" unique_id=1972997282]
+script = ExtResource("1_7jj4f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=559728155]
+texture = ExtResource("1_3e7dm")
+
+[node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("2_n0wcf")]
+position = Vector2(23, 20)
+
+[node name="Barriers" type="StaticBody2D" parent="." unique_id=1736035520]
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Barriers" unique_id=44648534]
+position = Vector2(-50, -8)
+shape = SubResource("RectangleShape2D_n0wcf")
+
+[node name="TopCollision" type="CollisionShape2D" parent="Barriers" unique_id=534697310]
+position = Vector2(-3, -61)
+shape = SubResource("RectangleShape2D_jwaux")
+
+[node name="RightCollision" type="CollisionShape2D" parent="Barriers" unique_id=647133166]
+position = Vector2(50, -8)
+shape = SubResource("RectangleShape2D_7jj4f")
+
+[node name="BottomCollision" type="CollisionShape2D" parent="Barriers" unique_id=1171015278]
+position = Vector2(-5, 61)
+shape = SubResource("RectangleShape2D_qphb6")
+
+[node name="OfficeToIn" type="Area2D" parent="." unique_id=1133922851 groups=["Interactable"]]
+position = Vector2(0, 45)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_jwaux")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OfficeToIn" unique_id=1313465775 groups=["Interactable"]]
+position = Vector2(-1, 5)
+shape = SubResource("RectangleShape2D_hub07")

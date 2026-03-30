@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://c15ctylh5lvck"]
+
+[ext_resource type="Script" uid="uid://doc1ijxmqvcy" path="res://basement.gd" id="1_hc2hy"]
+[ext_resource type="Texture2D" uid="uid://diidg4qmq6vmj" path="res://art/environment/Basement.png" id="1_wvfle"]
+[ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="2_etyrx"]
+[ext_resource type="Script" uid="uid://d0u3icxul03d3" path="res://scripts/transitions/basement_to_in.gd" id="3_wy1pe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etyrx"]
+size = Vector2(20, 310.1715)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wy1pe"]
+size = Vector2(519, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hc2hy"]
+size = Vector2(20, 309.29367)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wiqa1"]
+size = Vector2(520, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmq6a"]
+size = Vector2(46, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ctny"]
+size = Vector2(7.75, 30)
+
+[sub_resource type="Gradient" id="Gradient_hc2hy"]
+offsets = PackedFloat32Array(0.018072288, 0.21385542, 0.6415663)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wiqa1"]
+gradient = SubResource("Gradient_hc2hy")
+fill = 1
+fill_from = Vector2(0.50869566, 0.5195652)
+
+[node name="Basement" type="Node2D" unique_id=898653923]
+script = ExtResource("1_hc2hy")
+
+[node name="Environment" type="Sprite2D" parent="." unique_id=69502245]
+position = Vector2(-85, 81)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wvfle")
+
+[node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("2_etyrx")]
+position = Vector2(-161, 144)
+
+[node name="Barriers" type="StaticBody2D" parent="." unique_id=1736281917]
+scale = Vector2(1, 1.0529728)
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Barriers" unique_id=1750271696]
+position = Vector2(-181, 0.28592753)
+shape = SubResource("RectangleShape2D_etyrx")
+
+[node name="TopCollision" type="CollisionShape2D" parent="Barriers" unique_id=700718243]
+position = Vector2(-117, 15.195068)
+shape = SubResource("RectangleShape2D_wy1pe")
+
+[node name="RightCollision" type="CollisionShape2D" parent="Barriers" unique_id=477013526]
+position = Vector2(10, 75.97537)
+shape = SubResource("RectangleShape2D_hc2hy")
+
+[node name="BottomCollision" type="CollisionShape2D" parent="Barriers" unique_id=9596906]
+position = Vector2(2, 164.29674)
+shape = SubResource("RectangleShape2D_wiqa1")
+
+[node name="StairsCollision1" type="CollisionPolygon2D" parent="Barriers" unique_id=220427066]
+polygon = PackedVector2Array(-166, 148.15198, -142, 153.85013, -171, 153.85013, -171, 148.15198)
+
+[node name="StairsCollision2" type="CollisionPolygon2D" parent="Barriers" unique_id=1913961561]
+polygon = PackedVector2Array(-142, 126.30905, -171, 120.6109, -171, 118.71152, -142, 124.40967)
+
+[node name="ShelfCollision" type="CollisionShape2D" parent="Barriers" unique_id=292669084]
+position = Vector2(-148, 108.26488)
+shape = SubResource("RectangleShape2D_kmq6a")
+
+[node name="ShelfCollision2" type="CollisionShape2D" parent="Barriers" unique_id=1465234247]
+position = Vector2(-146, 90.22076)
+shape = SubResource("RectangleShape2D_kmq6a")
+
+[node name="ShelfCollision3" type="CollisionShape2D" parent="Barriers" unique_id=725244657]
+position = Vector2(-147, 71.22691)
+shape = SubResource("RectangleShape2D_kmq6a")
+
+[node name="ShelfCollision4" type="CollisionShape2D" parent="Barriers" unique_id=241679834]
+position = Vector2(-148, 55.08214)
+shape = SubResource("RectangleShape2D_kmq6a")
+
+[node name="BoxCollision" type="CollisionPolygon2D" parent="Barriers" unique_id=883840042]
+polygon = PackedVector2Array(-131, 56.98153, -132, 35.138607, -145, 35.138607, -145, 23.742304, -171, 23.742304, -171, 59.830605)
+
+[node name="HeaterCollision" type="CollisionPolygon2D" parent="Barriers" unique_id=153474279]
+polygon = PackedVector2Array(-1, 153.85013, -59, 153.85013, -59, 114.91275, -45, 114.91275, -45, 88.321365, 0, 88.321365)
+
+[node name="BasementToIn" type="Area2D" parent="." unique_id=811085621 groups=["Interactable"]]
+position = Vector2(-165, 136)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_wy1pe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasementToIn" unique_id=571241824 groups=["Interactable"]]
+position = Vector2(-5.875, 5)
+shape = SubResource("RectangleShape2D_1ctny")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1212808248]
+position = Vector2(-84, 95)
+color = Color(1, 1, 0.3372549, 1)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_wiqa1")
+texture_scale = 2.0

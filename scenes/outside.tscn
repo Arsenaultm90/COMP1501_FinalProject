@@ -1,17 +1,16 @@
 [gd_scene format=4 uid="uid://dc86tahcdbmqv"]
 
-[ext_resource type="Script" uid="uid://xndg5qi1o0mt" path="res://scripts/out_to_in_transition.gd" id="2_8lkp2"]
+[ext_resource type="Script" uid="uid://xndg5qi1o0mt" path="res://scripts/transitions/out_to_in_transition.gd" id="2_8lkp2"]
 [ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="2_nsm10"]
-[ext_resource type="Texture2D" uid="uid://bbida3g5bg3h6" path="res://art/character/static_shadow.png" id="3_8lkp2"]
 [ext_resource type="Script" uid="uid://dk88kahs870dv" path="res://scripts/day_night_cycle.gd" id="4_udpx5"]
 [ext_resource type="Texture2D" uid="uid://ee5egjt47mlx" path="res://art/daynightcycle-gradient-texture.tres" id="5_7r1kg"]
 [ext_resource type="Texture2D" uid="uid://c0jsmtb3n3y3r" path="res://art/environment/Gas Station.png" id="6_bkgx0"]
 [ext_resource type="Texture2D" uid="uid://cswc5axwgeprm" path="res://art/environment/Road.png" id="7_uaw8k"]
+[ext_resource type="Texture2D" uid="uid://chpkskmkt057f" path="res://art/character/prototype_character.png" id="8_ht1us"]
 [ext_resource type="Texture2D" uid="uid://c31kc1q1onwr5" path="res://art/character/prototype_character_red.png" id="8_lt5my"]
 [ext_resource type="Script" uid="uid://dypgltvj7h71e" path="res://scripts/npc_dialogue.gd" id="8_v7x2m"]
 [ext_resource type="Texture2D" uid="uid://rbsshntrq343" path="res://art/environment/Car1.png" id="8_x3una"]
 [ext_resource type="Script" uid="uid://c5u8b2mnqwvey" path="res://scripts/dialogue_resource.gd" id="9_cdqji"]
-[ext_resource type="Texture2D" uid="uid://dxddbnq7y0jx0" path="res://art/character/prototype_character_yellow.png" id="10_v7x2m"]
 [ext_resource type="Texture2D" uid="uid://ckckykperw4ws" path="res://art/environment/TilemapOutside.png" id="13_x3una"]
 [ext_resource type="Texture2D" uid="uid://xprxc6efabp8" path="res://art/environment/Tree1.png" id="14_nxbbw"]
 
@@ -20,26 +19,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkgx0"]
 size = Vector2(148, 111)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpxjy"]
-size = Vector2(76.90546, 33.071644)
-
 [sub_resource type="Resource" id="Resource_x3una"]
 script = ExtResource("9_cdqji")
-path = "res://data/dialogue/npc_test.json"
+path = "res://data/dialogue/frank/frank_day1.json"
 metadata/_custom_type_script = "uid://c5u8b2mnqwvey"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lt5my"]
 radius = 4.0
 height = 8.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpxjy"]
+size = Vector2(76.90546, 33.071644)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tstl"]
 radius = 5.0
 height = 14.0
-
-[sub_resource type="Resource" id="Resource_nxbbw"]
-script = ExtResource("9_cdqji")
-path = "res://data/dialogue/npc_test2.json"
-metadata/_custom_type_script = "uid://c5u8b2mnqwvey"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdqji"]
 texture = ExtResource("13_x3una")
@@ -159,7 +153,7 @@ script = ExtResource("4_udpx5")
 gradient = ExtResource("5_7r1kg")
 
 [node name="SceneTransition" type="Area2D" parent="." unique_id=2003465589 groups=["Interactable"]]
-position = Vector2(217, 36)
+position = Vector2(217, 28)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
@@ -168,15 +162,12 @@ script = ExtResource("2_8lkp2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTransition" unique_id=1213545127 groups=["Interactable"]]
 shape = SubResource("RectangleShape2D_udpx5")
 
-[node name="Sprite2D" type="Sprite2D" parent="SceneTransition" unique_id=147111179]
-texture = ExtResource("3_8lkp2")
-
 [node name="Level" type="Node2D" parent="." unique_id=1041783062]
 y_sort_enabled = true
 position = Vector2(-1, 5)
 
 [node name="PlayerSpawner" parent="Level" unique_id=398890483 instance=ExtResource("2_nsm10")]
-position = Vector2(217, 129)
+position = Vector2(217, 51)
 
 [node name="GasStationMain" type="StaticBody2D" parent="Level" unique_id=657708314]
 texture_filter = 1
@@ -215,6 +206,34 @@ texture = ExtResource("7_uaw8k")
 position = Vector2(732, 333)
 texture = ExtResource("7_uaw8k")
 
+[node name="NPCSpawners" type="Node2D" parent="Level" unique_id=170604141]
+
+[node name="FrankSpawn" type="Sprite2D" parent="Level/NPCSpawners" unique_id=1889063626 groups=["Interactable"]]
+modulate = Color(1, 0.42121598, 0.35251912, 1)
+position = Vector2(372, -107)
+texture = ExtResource("8_ht1us")
+hframes = 4
+vframes = 12
+
+[node name="NPCInteraction" type="Area2D" parent="Level/NPCSpawners/FrankSpawn" unique_id=444881624 groups=["Interactable"]]
+position = Vector2(0, 1)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("8_v7x2m")
+dialogue = SubResource("Resource_x3una")
+npc_name = "DialogueTest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/NPCSpawners/FrankSpawn/NPCInteraction" unique_id=467821387 groups=["Interactable"]]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_lt5my")
+
+[node name="EarlSpawn" type="Sprite2D" parent="Level/NPCSpawners" unique_id=1458806498]
+modulate = Color(1, 0.42121598, 0.35251912, 1)
+position = Vector2(105, -33)
+texture = ExtResource("8_ht1us")
+hframes = 4
+vframes = 12
+
 [node name="Car1" type="Sprite2D" parent="." unique_id=1318927276]
 position = Vector2(98.00001, -49.000004)
 scale = Vector2(0.78017867, 0.78017867)
@@ -247,31 +266,6 @@ shape = SubResource("CapsuleShape2D_5tstl")
 [node name="Sprite2D" type="Sprite2D" parent="NPCTest" unique_id=1796009721]
 position = Vector2(174, 38)
 texture = ExtResource("8_lt5my")
-hframes = 4
-vframes = 12
-
-[node name="NPCTestChoices" type="CharacterBody2D" parent="." unique_id=1508579045 groups=["Interactable"]]
-position = Vector2(-42, 0)
-
-[node name="NPCInteraction" type="Area2D" parent="NPCTestChoices" unique_id=655250210 groups=["Interactable"]]
-position = Vector2(174, 38)
-collision_layer = 2
-collision_mask = 0
-script = ExtResource("8_v7x2m")
-dialogue = SubResource("Resource_nxbbw")
-npc_name = "ChoicesTest"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCTestChoices/NPCInteraction" unique_id=1140572023 groups=["Interactable"]]
-position = Vector2(0, 7)
-shape = SubResource("CapsuleShape2D_lt5my")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCTestChoices" unique_id=1272619618]
-position = Vector2(174, 38)
-shape = SubResource("CapsuleShape2D_5tstl")
-
-[node name="Sprite2D" type="Sprite2D" parent="NPCTestChoices" unique_id=306339046]
-position = Vector2(174, 38)
-texture = ExtResource("10_v7x2m")
 hframes = 4
 vframes = 12
 

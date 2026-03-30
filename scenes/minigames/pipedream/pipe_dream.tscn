@@ -1,0 +1,310 @@
+[gd_scene format=3 uid="uid://cavyauf6il82c"]
+
+[ext_resource type="Script" uid="uid://fgrqwi7yiwt3" path="res://scripts/minigames/pipedream/pipe_dream_manager.gd" id="1_nfst3"]
+[ext_resource type="Texture2D" uid="uid://c3u86d131iaky" path="res://art/minigames/pipedream/GridBG.png" id="2_adqlf"]
+[ext_resource type="Script" uid="uid://dmynbupe2x1ml" path="res://scripts/minigames/pipedream/pipe_queue.gd" id="2_gbpoq"]
+[ext_resource type="PackedScene" uid="uid://sk87rqdrhf3f" path="res://scenes/minigames/pipedream/pipe_cell.tscn" id="3_gbpoq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adqlf"]
+
+[node name="PipeDream" type="Node2D" unique_id=1642259259]
+script = ExtResource("1_nfst3")
+
+[node name="Background" type="NinePatchRect" parent="." unique_id=510414980]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -33.0
+offset_right = 770.0
+offset_bottom = 623.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+texture = ExtResource("2_adqlf")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="GameArea" type="MarginContainer" parent="." unique_id=1440357049]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameArea" unique_id=50157994]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="QueuePanel" type="VBoxContainer" parent="GameArea/HBoxContainer" unique_id=2069606391]
+layout_mode = 2
+theme_override_constants/separation = 4
+script = ExtResource("2_gbpoq")
+
+[node name="TextureRect" type="NinePatchRect" parent="GameArea/HBoxContainer/QueuePanel" unique_id=573704278]
+custom_minimum_size = Vector2(100, 455)
+layout_mode = 2
+texture = ExtResource("2_adqlf")
+region_rect = Rect2(8, 0, 24, 32)
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="GameArea/HBoxContainer/QueuePanel/TextureRect" unique_id=1978195126]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer" unique_id=1783520916]
+custom_minimum_size = Vector2(0, 455)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer" unique_id=342098334]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Queue :"
+uppercase = true
+
+[node name="Control" type="Control" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer" unique_id=1641954639]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Slot1" type="AnimatedSprite2D" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer/Control" unique_id=1745720426]
+position = Vector2(45, 40)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_adqlf")
+
+[node name="Control2" type="Control" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer" unique_id=939292374]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Slot2" type="AnimatedSprite2D" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer/Control2" unique_id=1851049991]
+position = Vector2(45, 40)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_adqlf")
+
+[node name="Control3" type="Control" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer" unique_id=1615351879]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Slot3" type="AnimatedSprite2D" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer/Control3" unique_id=2027274939]
+position = Vector2(45, 40)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_adqlf")
+
+[node name="Control4" type="Control" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer" unique_id=549298397]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Slot4" type="AnimatedSprite2D" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer/Control4" unique_id=679431310]
+position = Vector2(45, 40)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_adqlf")
+
+[node name="Control5" type="Control" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer" unique_id=313141733]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Slot5" type="AnimatedSprite2D" parent="GameArea/HBoxContainer/QueuePanel/TextureRect/MarginContainer/VBoxContainer/Control5" unique_id=1303577510]
+position = Vector2(45, 40)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_adqlf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameArea/HBoxContainer" unique_id=675544610]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="UI" type="HBoxContainer" parent="GameArea/HBoxContainer/VBoxContainer" unique_id=125191694]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TimeRemaining" type="Label" parent="GameArea/HBoxContainer/VBoxContainer/UI" unique_id=1809824072]
+layout_mode = 2
+text = "Time Remaining :"
+
+[node name="TimerBar" type="ProgressBar" parent="GameArea/HBoxContainer/VBoxContainer/UI" unique_id=1646163117]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+max_value = 180.0
+
+[node name="CountdownLabel" type="Label" parent="GameArea/HBoxContainer/VBoxContainer/UI" unique_id=18066513]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="GameArea/HBoxContainer/VBoxContainer/UI" unique_id=1138521785]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="GameArea/HBoxContainer/VBoxContainer/UI" unique_id=192538871]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="GameArea/HBoxContainer/VBoxContainer" unique_id=1212647664]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 8
+
+[node name="PipeCell" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=998188823 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell2" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1043201100 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell3" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1438234751 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell4" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1566385019 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell5" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1039171826 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell6" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2083032450 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell7" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=39141266 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell8" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2073043383 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell9" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1769881970 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell10" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=74757725 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell11" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1156504917 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell12" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1706067681 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell13" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=91901632 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell14" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1086724848 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell15" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=597730878 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell16" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2061358147 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell17" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1871776947 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell18" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2075653147 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell19" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=959234059 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell20" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1568753142 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell21" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2076197571 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell22" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1281455554 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell23" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=753303626 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell24" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1102864829 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell25" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2049876587 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell26" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1011469045 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell27" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=134081812 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell28" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1001209133 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell29" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=16398235 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell30" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=125081280 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell31" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=969058191 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell32" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=249727059 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell33" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=71162303 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell34" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=987568428 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell35" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1737128595 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell36" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1589993183 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell37" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=655393129 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell38" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=478893126 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell39" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1009695494 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell40" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=376564175 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell41" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=556192535 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell42" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1119049886 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell43" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=2105199453 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell44" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1915493707 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell45" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=475661175 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell46" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=320638925 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell47" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=1336519288 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="PipeCell48" parent="GameArea/HBoxContainer/VBoxContainer/GridContainer" unique_id=581339823 instance=ExtResource("3_gbpoq")]
+layout_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=710626579]
+position = Vector2(-56, -41)
+offset = Vector2(420, 340)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="." unique_id=636524477]
+offset_left = -59.0
+offset_top = 42.0
+offset_right = -6.0
+offset_bottom = 91.0
+text = "NEXT
+BLOCK"
+horizontal_alignment = 1
+vertical_alignment = 3

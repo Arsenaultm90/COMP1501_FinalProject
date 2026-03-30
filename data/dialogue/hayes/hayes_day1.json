@@ -1,0 +1,118 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "hayes_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Deputy Hayes",
+			"text": "Hey Cid. Quiet morning?",
+			"choices": [
+				{ "text": "Pretty quiet yeah.", "next": "quiet" },
+				{ "text": "Earl came in earlier.", "next": "earl_mention" },
+				{ "text": "You look tired, Deputy.", "next": "tired" }
+			]
+		},
+		"quiet": {
+			"speaker": "Deputy Hayes",
+			"text": "Good. Good. That's... good.",
+			"next": "pause"
+		},
+		"earl_mention": {
+			"speaker": "Deputy Hayes",
+			"text": "Earl. Right. He's in every day isn't he.",
+			"next": "pause"
+		},
+		"tired": {
+			"speaker": "Deputy Hayes",
+			"text": "Didn't sleep great. Been happening a lot lately.",
+			"next": "pause"
+		},
+		"pause": {
+			"speaker": "Deputy Hayes",
+			"text": "Hey, can I ask you something? And I mean this genuinely.",
+			"choices": [
+				{ "text": "Sure, what's up?", "next": "ask" },
+				{ "text": "Sounds serious.", "next": "serious" }
+			]
+		},
+		"ask": {
+			"speaker": "Deputy Hayes",
+			"text": "You ever notice how many young people moved here in the last few years? Like yourself?",
+			"choices": [
+				{ "text": "I guess there are a few of us.", "next": "a_few" },
+				{ "text": "Not really. Is that strange?", "next": "strange" },
+				{ "text": "Where is this going, Deputy?", "next": "going" }
+			]
+		},
+		"serious": {
+			"speaker": "Deputy Hayes",
+			"text": "Maybe. Probably nothing. Just... you ever notice how many young people moved here recently?",
+			"next": "a_few"
+		},
+		"a_few": {
+			"speaker": "Deputy Hayes",
+			"text": "A few. And then some of them just... leave. No goodbye. No house sale. Nothing.",
+			"next": "leaves"
+		},
+		"strange": {
+			"speaker": "Deputy Hayes",
+			"text": "Maybe it is. Maybe it isn't. But some of them leave just as quietly as they came.",
+			"next": "leaves"
+		},
+		"going": {
+			"speaker": "Deputy Hayes",
+			"text": "Nowhere. Forget I said anything.",
+			"next": "backtrack"
+		},
+		"leaves": {
+			"speaker": "Deputy Hayes",
+			"text": "I filed two missing persons reports last year. Sheriff closed both inside a week. Said they just moved on.",
+			"choices": [
+				{ "text": "Maybe they did.", "next": "maybe" },
+				{ "text": "That does sound odd.", "next": "odd" },
+				{ "text": "Why are you telling me this?", "next": "why" }
+			]
+		},
+		"maybe": {
+			"speaker": "Deputy Hayes",
+			"text": "Yeah. Maybe.",
+			"next": "farewell"
+		},
+		"odd": {
+			"speaker": "Deputy Hayes",
+			"text": "Yeah. It does. Just keep your head down and your eyes open. That's all I'm saying.",
+			"next": "farewell",
+			"flags": {
+				"hayes_warned_cid": { "type": "event", "value": true }
+			}
+		},
+		"why": {
+			"speaker": "Deputy Hayes",
+			"text": "Because you seem like a good kid. And I'd hate to file a third report.",
+			"next": "farewell",
+			"flags": {
+				"hayes_warned_cid": { "type": "event", "value": true }
+			}
+		},
+		"backtrack": {
+			"speaker": "Deputy Hayes",
+			"text": "Just stay safe out there. Small towns got long memories.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Deputy Hayes",
+			"text": "Anyway. I'll let you get back to it.",
+			"flags": {
+				"hayes_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Deputy Hayes",
+			"text": "Still here. Good.",
+			"next": "end"
+		}
+	}
+}

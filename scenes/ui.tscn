@@ -9,6 +9,13 @@
 [ext_resource type="Script" uid="uid://uhckk5glubap" path="res://scripts/text_box.gd" id="5_8dubc"]
 [ext_resource type="Texture2D" uid="uid://cdfjdn4h86n2t" path="res://art/dialogue/DialogueBox.png" id="6_p7vwb"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cgfq5"]
+texture = ExtResource("6_p7vwb")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ktti3"]
 texture = ExtResource("6_p7vwb")
 texture_margin_left = 16.0
@@ -104,6 +111,18 @@ offset_top = 438.0
 offset_right = 989.0
 offset_bottom = 461.0
 text = "Paused"
+
+[node name="NameTag" type="PanelContainer" parent="." unique_id=292653108]
+visible = false
+offset_right = 40.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cgfq5")
+
+[node name="NameLabel" type="Label" parent="NameTag" unique_id=15187692]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x4jx1")
+theme_override_font_sizes/font_size = 32
 
 [node name="TextBox" type="PanelContainer" parent="." unique_id=300886815]
 visible = false
