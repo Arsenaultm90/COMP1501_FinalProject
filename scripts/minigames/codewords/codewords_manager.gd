@@ -11,6 +11,7 @@ var current_phase: Phase = Phase.SLOW
 @export var fall_duration: float = 2.0
 
 @onready var music: AudioStreamPlayer2D = $Music
+@onready var instructions : MarginContainer = $BrainUI/Instructions
 @onready var brain: Sprite2D = $BrainUI/BrainSprite
 @onready var quality_label: Label = $BrainUI/QualityLabel
 @onready var dialogue_box: Label = $BrainUI/Dialogue
@@ -66,11 +67,13 @@ func _ready():
 	quality_label.text = ""
 	beat_interval = 60.0 / bpm
 	next_spawn_time = (beat_interval * beats_per_spawn) - fall_duration
-	music.play()
 	song_length = music.stream.get_length()
 	await get_tree().create_timer(1.0).timeout
 
 func _process(_delta):
+	if instructions.visible == true:
+		return
+	
 	song_pos = music.get_playback_position()
 	
 	### TESTING SCENE TRANSITIONS
@@ -127,6 +130,11 @@ func _input(event):
 		for i in range(LANE_KEYS.size()):
 			if event.keycode == LANE_KEYS[i]:
 				check_hit(i)
+	
+	if instructions.visible == true and Input.is_action_just_pressed("pluck"):
+		music.play()
+		instructions.visible = false
+		await get_tree().create_timer(1.0).timeout
 
 func check_hit(lane: int):
 	var zone = hit_zones[lane]

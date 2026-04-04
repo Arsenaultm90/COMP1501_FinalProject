@@ -1,0 +1,294 @@
+[gd_scene format=3 uid="uid://b118tj615d5c4"]
+
+[ext_resource type="Script" uid="uid://dpu8upw6viwwx" path="res://scripts/minigames/mindcatch/mind_catch.gd" id="1_2o7tp"]
+[ext_resource type="FontFile" uid="uid://5lg58a1j0bkb" path="res://art/fonts/superstar_memesbruh03.ttf" id="1_75pb4"]
+[ext_resource type="AudioStream" uid="uid://c2xiijotmfm8l" path="res://sounds/music/minigames/mindcatch/MindCatchBG.ogg" id="3_4so4j"]
+
+[node name="MindCatch" type="Control" unique_id=2145687812]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2o7tp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=293057778]
+
+[node name="Instructions" type="MarginContainer" parent="CanvasLayer" unique_id=926972704]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Instructions" unique_id=1862115372]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Instructions/ColorRect2" unique_id=1794042913]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Instructions/ColorRect2/MarginContainer" unique_id=1068397741]
+layout_mode = 2
+color = Color(0, 0, 0, 0.9254902)
+
+[node name="Label" type="Label" parent="CanvasLayer/Instructions/ColorRect2/MarginContainer/ColorRect" unique_id=743463026]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -582.0
+offset_top = -208.5
+offset_right = 582.0
+offset_bottom = 208.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 32
+text = "Align the pink zone with the green zone using the 'F' key to accumulate progress.
+
+When the progress reaches 100% you can \"pluck\" the node using the \"Enter\" key. 
+
+Each pluck is graded depending on its centering within the green zone. 
+
+At the end of 3 rounds, your success will be determined based on
+number of plucks + the quality of the plucks.
+
+Good Luck
+
+press \"Enter\" to continue"
+horizontal_alignment = 1
+
+[node name="Background" type="ColorRect" parent="." unique_id=59330858]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(8.67632e-05, 0.00653618, 0.107729755, 1)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1515398597]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2.0
+offset_top = 57.0
+offset_right = 2.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 32
+
+[node name="RoundLabel" type="Label" parent="." unique_id=92846177]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -954.0
+offset_top = 91.0
+offset_right = 950.0
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 64
+text = "Round 1"
+horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1219322768]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 179.0
+offset_right = 20.0
+offset_bottom = 211.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="HorizontalBar" type="Control" parent="." unique_id=815020659]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bar" type="ColorRect" parent="HorizontalBar" unique_id=956300458]
+custom_minimum_size = Vector2(500, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -20.0
+offset_right = 250.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Zone" type="ColorRect" parent="HorizontalBar" unique_id=1594746890]
+custom_minimum_size = Vector2(125, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.2513996e-06, 0.7179272, 0.7179272, 1)
+
+[node name="Marker" type="ColorRect" parent="HorizontalBar" unique_id=2074725274]
+custom_minimum_size = Vector2(15, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.30980393, 1, 1)
+
+[node name="VerticalBar" type="Control" parent="." unique_id=1088220412]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bar" type="ColorRect" parent="VerticalBar" unique_id=129923319]
+custom_minimum_size = Vector2(40, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Zone" type="ColorRect" parent="VerticalBar" unique_id=10718507]
+custom_minimum_size = Vector2(40, 125)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.092848815, 0.6715075, 0.5750007, 1)
+
+[node name="Marker" type="ColorRect" parent="VerticalBar" unique_id=228639742]
+custom_minimum_size = Vector2(40, 15)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.30980393, 1, 1)
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1628931862]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 128
+
+[node name="SuccessLabel" type="Label" parent="ResultLabel" unique_id=1477130840]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 8.0
+offset_right = 20.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="PluckLabel" type="Label" parent="." unique_id=2032965556]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_75pb4")
+theme_override_font_sizes/font_size = 40
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1825262125]
+stream = ExtResource("3_4so4j")

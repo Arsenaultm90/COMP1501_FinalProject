@@ -19,6 +19,7 @@ var item: Node = null
 var item_path_index: int = 0 
 var item_lerp_t: float = 0.0 
 var current_level: int = 1
+var stuck_frames: int = 0
 
 var source_pos: Vector2i = Vector2i(0, 2)
 var exit_pos: Vector2i = Vector2i(7, 3)
@@ -29,18 +30,16 @@ var exit_pos: Vector2i = Vector2i(7, 3)
 @onready var result_label = $GameArea/HBoxContainer/VBoxContainer/UI/ResultLabel
 @onready var timer_bar = $GameArea/HBoxContainer/VBoxContainer/UI/TimerBar
 @onready var grid_container: GridContainer = $GameArea/HBoxContainer/VBoxContainer/GridContainer
+@onready var instructions : MarginContainer = $CanvasLayer/Instructions
+@onready var canvas_layer : CanvasLayer = $CanvasLayer
 
 func _ready() -> void:
 	GlobalUI.hide_ui()
 	GlobalUI.game_clock.pause_clock()
-	SceneManager.play_music("pipedream/BG_Music")
-	current_level = PlayerManager.pipe_dream_level
-	_build_grid_from_children()
-	_apply_level(current_level)
-	_mark_source_and_exit()
-	result_label.visible = false
-	timer_bar.max_value = 180.0
-	timer_bar.value = 180.0
+	if PlayerManager.pipe_dream_level == 1:
+		instructions.visible = true
+	else:
+		_set_up_level()
 
 func _build_grid_from_children() -> void:
 	var cells = grid_container.get_children()
@@ -54,7 +53,20 @@ func _build_grid_from_children() -> void:
 			row.append(cell)
 		grid.append(row)
 
+func _set_up_level() -> void:
+	SceneManager.play_music("pipedream/BG_Music")
+	current_level = PlayerManager.pipe_dream_level
+	_build_grid_from_children()
+	_apply_level(current_level)
+	_mark_source_and_exit()
+	result_label.visible = false
+	timer_bar.max_value = 180.0
+	timer_bar.value = 180.0
+
 func _process(delta: float) -> void:
+	if instructions.visible == true:
+		return
+	
 	if counting_down:
 		countdown -= delta
 		countdown_label.text = "Flow starts in: " + str(ceil(countdown))
@@ -87,6 +99,12 @@ func _process(delta: float) -> void:
 	if flow_timer >= flow_interval:
 		flow_timer = 0.0
 		_advance_flow()
+
+func _input(_event: InputEvent) -> void:
+	if instructions.visible == true and Input.is_action_pressed("pluck"):
+		instructions.visible = false
+		_set_up_level()
+		
 
 func _apply_level(level: int) -> void:
 	var data = PipeData.LEVELS[level]
@@ -148,9 +166,13 @@ func _advance_flow() -> void:
 			flow_dir = direction
 			moved = true
 			break
-
+	
 	if not moved:
-		_end_game(false, "Path blocked!")
+		stuck_frames += 1
+		if stuck_frames >= 2:
+			_end_game(false, "Path blocked!")
+	else:
+		stuck_frames = 0
 
 func _end_game(success: bool, reason: String) -> void:
 	print("Sucess: ", success, " Reason: ", reason)

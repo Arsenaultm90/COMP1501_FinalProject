@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bs5qq55nym4hs"]
+
+[node name="HorizontalBar" type="Control" unique_id=325442185]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bar" type="ColorRect" parent="." unique_id=361451428]
+custom_minimum_size = Vector2(500, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -20.0
+offset_right = 250.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Zone" type="ColorRect" parent="." unique_id=2013155024]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1.2513996e-06, 0.7179272, 0.7179272, 1)
+
+[node name="Marker" type="ColorRect" parent="." unique_id=1750048069]
+custom_minimum_size = Vector2(15, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.30980393, 1, 1)

@@ -12,7 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://rbsshntrq343" path="res://art/environment/Car1.png" id="8_x3una"]
 [ext_resource type="Script" uid="uid://c5u8b2mnqwvey" path="res://scripts/dialogue_resource.gd" id="9_cdqji"]
 [ext_resource type="Texture2D" uid="uid://ckckykperw4ws" path="res://art/environment/TilemapOutside.png" id="13_x3una"]
+[ext_resource type="AudioStream" uid="uid://b6j2k8lnwaju8" path="res://sounds/music/NatureSounds.ogg" id="14_ht1us"]
 [ext_resource type="Texture2D" uid="uid://xprxc6efabp8" path="res://art/environment/Tree1.png" id="14_nxbbw"]
+[ext_resource type="Texture2D" uid="uid://bfevgio1b2osv" path="res://art/Logo.png" id="15_ht1us"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udpx5"]
 
@@ -147,6 +149,14 @@ size = Vector2(358, 198.5)
 
 [node name="OutsideRoot" type="Node2D" unique_id=851555587]
 y_sort_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2084007372]
+
+[node name="Logo" type="Sprite2D" parent="CanvasLayer" unique_id=1300234869]
+z_index = 1
+position = Vector2(214.00002, -448)
+scale = Vector2(0.2434896, 0.24348961)
+texture = ExtResource("15_ht1us")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=2131039635]
 script = ExtResource("4_udpx5")
@@ -1206,3 +1216,7 @@ shape = SubResource("RectangleShape2D_nxbbw")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Trees/StaticBody2D" unique_id=1962817489]
 position = Vector2(209, -233.25)
 shape = SubResource("RectangleShape2D_ht1us")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1214559049]
+stream = ExtResource("14_ht1us")
+autoplay = true

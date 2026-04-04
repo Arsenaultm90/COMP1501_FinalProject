@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c0g0gauctg2ow"]
+
+[ext_resource type="FontFile" uid="uid://5lg58a1j0bkb" path="res://art/fonts/superstar_memesbruh03.ttf" id="1_a71r2"]
+[ext_resource type="Script" uid="uid://cx461rweos2vw" path="res://scripts/minigames/mindcatch/perfect_label.gd" id="1_ikjax"]
+
+[node name="PerfectLabel" type="Label" unique_id=1942613019]
+offset_right = 83.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.31031832, 0.9999997, 0.34242943, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_a71r2")
+theme_override_font_sizes/font_size = 32
+text = "Perfect"
+script = ExtResource("1_ikjax")

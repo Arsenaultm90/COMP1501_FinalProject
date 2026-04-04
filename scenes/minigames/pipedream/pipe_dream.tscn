@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3u86d131iaky" path="res://art/minigames/pipedream/GridBG.png" id="2_adqlf"]
 [ext_resource type="Script" uid="uid://dmynbupe2x1ml" path="res://scripts/minigames/pipedream/pipe_queue.gd" id="2_gbpoq"]
 [ext_resource type="PackedScene" uid="uid://sk87rqdrhf3f" path="res://scenes/minigames/pipedream/pipe_cell.tscn" id="3_gbpoq"]
+[ext_resource type="FontFile" uid="uid://5lg58a1j0bkb" path="res://art/fonts/superstar_memesbruh03.ttf" id="5_ighnj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_adqlf"]
 
@@ -308,3 +309,66 @@ text = "NEXT
 BLOCK"
 horizontal_alignment = 1
 vertical_alignment = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=230953256]
+
+[node name="Instructions" type="MarginContainer" parent="CanvasLayer" unique_id=1581228148]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/Instructions" unique_id=1608213207]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Instructions/ColorRect2" unique_id=2118293630]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Instructions/ColorRect2/MarginContainer" unique_id=783889502]
+layout_mode = 2
+color = Color(0, 0, 0, 0.9254902)
+
+[node name="Label" type="Label" parent="CanvasLayer/Instructions/ColorRect2/MarginContainer/ColorRect" unique_id=2107622075]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -582.0
+offset_top = -208.5
+offset_right = 582.0
+offset_bottom = 208.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_ighnj")
+theme_override_font_sizes/font_size = 32
+text = "You need to unload the gasoline from the truck into storage.
+
+the conveyer belt hasn't been built yet and the trucker is not going to wait around
+much long.
+
+it is your job to form a belt that will properly transport the gasoline to storage
+by cliking tiles and placing the next belt in queue.
+
+if the belt is not the correct one, click the tile again to replace it.
+
+Good Luck
+
+press \"Enter\" to continue"
+horizontal_alignment = 1

@@ -278,6 +278,69 @@ blend_mode = 2
 texture = SubResource("GradientTexture2D_no65f")
 texture_scale = 1.44
 
+[node name="Instructions" type="MarginContainer" parent="BrainUI" unique_id=518517061]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
+
+[node name="ColorRect2" type="ColorRect" parent="BrainUI/Instructions" unique_id=2112508549]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BrainUI/Instructions/ColorRect2" unique_id=1315174413]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="BrainUI/Instructions/ColorRect2/MarginContainer" unique_id=914798208]
+layout_mode = 2
+color = Color(0, 0, 0, 0.9254902)
+
+[node name="Label" type="Label" parent="BrainUI/Instructions/ColorRect2/MarginContainer/ColorRect" unique_id=990277381]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -632.0
+offset_top = -278.0
+offset_right = 630.0
+offset_bottom = 279.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_onn7d")
+theme_override_font_sizes/font_size = 32
+text = "test your reaction time by pressing the appropriate button when the codewords collide
+with the boxes below.
+
+Words will fall through the neurons down to specific parts of your brain attempting
+to access your subconcious and awaken a sleeper agent.
+
+Your job is to resist these words to prevent the programming coming to the surface.
+
+The quality of the resistance can be determined by the flashing result and color
+of light behind the parts of the brain.
+
+If you survive long enough it will begin to speed up, offering a greater challenge.
+
+Good Luck
+
+press \"Enter\" to continue"
+horizontal_alignment = 1
+
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=947481829]
 stream = ExtResource("2_jelnr")
 
