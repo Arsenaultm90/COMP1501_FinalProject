@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://wl78s2yp85br"]
 
 [ext_resource type="Texture2D" uid="uid://d3n3pvoq8gaku" path="res://art/environment/Office.png" id="1_3e7dm"]
-[ext_resource type="Script" uid="uid://c8vi3781a3woy" path="res://office.gd" id="1_7jj4f"]
+[ext_resource type="Script" uid="uid://c8vi3781a3woy" path="res://scripts/office.gd" id="1_7jj4f"]
 [ext_resource type="PackedScene" uid="uid://cqn1xnyuh4ar8" path="res://scenes/player_spawner.tscn" id="2_n0wcf"]
 [ext_resource type="Script" uid="uid://cenrbyw3ul421" path="res://scripts/transitions/office_to_in.gd" id="3_jwaux"]
+[ext_resource type="Script" uid="uid://dypgltvj7h71e" path="res://scripts/npc_dialogue.gd" id="5_hub07"]
+[ext_resource type="Texture2D" uid="uid://bj4ompv1a7175" path="res://art/character/NPC/Rick.png" id="6_hub07"]
+[ext_resource type="Texture2D" uid="uid://bntud2uldq5n4" path="res://art/environment/OfficeDesk.png" id="7_2knxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0wcf"]
 size = Vector2(20, 272)
@@ -20,10 +23,21 @@ size = Vector2(520, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hub07"]
 size = Vector2(19, 5.5)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmddn"]
+radius = 9.0
+height = 56.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gdafm"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmddn"]
+size = Vector2(80, 18)
+
 [node name="Office" type="Node2D" unique_id=1972997282]
 script = ExtResource("1_7jj4f")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=559728155]
+[node name="OfficeBG" type="Sprite2D" parent="." unique_id=559728155]
 texture = ExtResource("1_3e7dm")
 
 [node name="PlayerSpawner" parent="." unique_id=398890483 instance=ExtResource("2_n0wcf")]
@@ -56,3 +70,39 @@ script = ExtResource("3_jwaux")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OfficeToIn" unique_id=1313465775 groups=["Interactable"]]
 position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_hub07")
+
+[node name="NPCs" type="Node2D" parent="." unique_id=572603318]
+position = Vector2(2, 0)
+
+[node name="Rick" type="CharacterBody2D" parent="NPCs" unique_id=1196720666 groups=["Interactable"]]
+position = Vector2(-16, -2)
+
+[node name="NPCInteraction" type="Area2D" parent="NPCs/Rick" unique_id=1922057999 groups=["Interactable"]]
+position = Vector2(0, -2)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_hub07")
+npc_id = "rick"
+npc_name = "Rick"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Rick/NPCInteraction" unique_id=1072731044 groups=["Interactable"]]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_fmddn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Rick" unique_id=866670731]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_gdafm")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/Rick" unique_id=1488795942]
+position = Vector2(0, -2)
+texture = ExtResource("6_hub07")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=630346771]
+position = Vector2(-15, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=535219304]
+texture = ExtResource("7_2knxt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=172437726]
+position = Vector2(15, 4)
+shape = SubResource("RectangleShape2D_fmddn")

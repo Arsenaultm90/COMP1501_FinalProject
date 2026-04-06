@@ -1,10 +1,11 @@
 extends Area2D
 
-@export var dialogue : DialogueResource
+@export var npc_id: String = ""
 @export var npc_name: String = ""
 
 func interact() -> void:
-	if not dialogue or dialogue.path == "":
-		push_error(npc_name + " has no dialogue assigned")
+	var path = DialogueManager.get_dialogue(npc_id)
+	if path == "":
+		push_error(npc_name + " has no dialogue for current time")
 		return
-	GlobalUI.start_dialogue(global_position, dialogue.path)
+	GlobalUI.start_dialogue(global_position, path)

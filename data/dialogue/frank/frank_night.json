@@ -1,0 +1,203 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "frank_night_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Frank",
+			"text": "You came. Good. Sit down and don't make a lot of noise.",
+			"choices": [
+				{
+					"text": "What's going on Frank?",
+					"next": "whats_going_on"
+				},
+				{
+					"text": "Earl sent me.",
+					"next": "earl_sent",
+					"require_flag": "earl_sent_to_frank"
+				},
+				{
+					"text": "You're scaring me a little.",
+					"next": "scared"
+				}
+			]
+		},
+		"whats_going_on": {
+			"speaker": "Frank",
+			"text": "Everything. All at once. Same as it happened to me.",
+			"next": "frank_story"
+		},
+		"earl_sent": {
+			"speaker": "Frank",
+			"text": "Earl's a good man. Smarter than he looks. Sit down.",
+			"next": "frank_story"
+		},
+		"scared": {
+			"speaker": "Frank",
+			"text": "Good. Fear means you're still the one driving.",
+			"next": "frank_story"
+		},
+		"frank_story": {
+			"speaker": "Frank",
+			"text": "I was like you once. Came to a town. Quiet job. Friendly faces. Didn't ask questions.",
+			"next": "frank_story_2"
+		},
+		"frank_story_2": {
+			"speaker": "Frank",
+			"text": "Then a man in a suit started giving me things to do. Called them tests. Said it was routine.",
+			"next": "frank_story_3"
+		},
+		"frank_story_3": {
+			"speaker": "Frank",
+			"text": "And then one morning I woke up and there were two of me. One that wanted coffee. One that had a job to finish.",
+			"choices": [
+				{
+					"text": "What kind of job?",
+					"next": "what_job"
+				},
+				{
+					"text": "That sounds like what's happening to me.",
+					"next": "happening_to_me",
+					"flags": {
+						"cid_recognizes_pattern": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "You're describing a breakdown Frank.",
+					"next": "breakdown"
+				}
+			]
+		},
+		"what_job": {
+			"speaker": "Frank",
+			"text": "Doesn't matter. I didn't finish it. That's all that matters.",
+			"next": "offer"
+		},
+		"happening_to_me": {
+			"speaker": "Frank",
+			"text": "I know it is. That's why I'm still here. Been waiting for someone like you.",
+			"next": "offer"
+		},
+		"breakdown": {
+			"speaker": "Frank",
+			"text": "Maybe it was. Or maybe a breakdown is just what they call it when you wake up.",
+			"next": "offer"
+		},
+		"offer": {
+			"speaker": "Frank",
+			"text": "I got a truck. Half a tank. And I know a road out of here that isn't on any map.",
+			"choices": [
+				{
+					"text": "You're asking me to leave with you.",
+					"next": "leave_yes"
+				},
+				{
+					"text": "I can't just leave.",
+					"next": "leave_no"
+				},
+				{
+					"text": "What happens if I stay?",
+					"next": "stay"
+				}
+			]
+		},
+		"leave_yes": {
+			"speaker": "Frank",
+			"text": "Tonight. Before that man finishes what he started.",
+			"next": "leave_confirm",
+			"flags": {
+				"frank_offered_escape": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"leave_no": {
+			"speaker": "Frank",
+			"text": "You got nothing holding you here that they didn't put there.",
+			"next": "leave_confirm"
+		},
+		"stay": {
+			"speaker": "Frank",
+			"text": "Best case? You end up like me. Worst case? You end up like you were supposed to.",
+			"next": "leave_confirm",
+			"flags": {
+				"cid_knows_activation_risk": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"leave_confirm": {
+			"speaker": "Frank",
+			"text": "So what do you say?",
+			"choices": [
+				{
+					"text": "Let's go.",
+					"next": "escape_good",
+					"flags": {
+						"ending_escape_frank": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "I need more time.",
+					"next": "more_time"
+				},
+				{
+					"text": "I'm staying.",
+					"next": "staying"
+				}
+			]
+		},
+		"escape_good": {
+			"speaker": "Frank",
+			"text": "Good kid. Truck's round back. Don't stop for anything.",
+			"next": "farewell"
+		},
+		"more_time": {
+			"speaker": "Frank",
+			"text": "You don't have it. But alright. You know where I'll be.",
+			"next": "farewell"
+		},
+		"staying": {
+			"speaker": "Frank",
+			"text": "Then God help you. And I mean that sincerely.",
+			"next": "farewell",
+			"flags": {
+				"cid_refused_escape": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"farewell": {
+			"speaker": "Frank",
+			"text": "Whatever you decide. Be the one deciding it.",
+			"flags": {
+				"frank_night_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Frank",
+			"text": "Truck's still there. Clock's still running.",
+			"next": "end"
+		}
+	}
+}

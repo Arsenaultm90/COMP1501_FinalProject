@@ -292,3 +292,4 @@ theme_override_font_sizes/font_size = 40
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1825262125]
 stream = ExtResource("3_4so4j")
+volume_db = -10.0

@@ -21,6 +21,7 @@ extends Control
 @onready var instructions = $CanvasLayer/Instructions
 @onready var music = $AudioStreamPlayer2D
 
+var game_ended = false
 var total_rounds = 3
 var round_duration = 30.0
 var round_timer = 30.0
@@ -103,7 +104,6 @@ func _process(delta):
 
 	if round_timer <= 0 and round_active:
 		round_active = false
-		show_round_result()
 		await show_round_result()
 
 func handle_input(delta):
@@ -125,28 +125,30 @@ func handle_input(delta):
 
 	if zone_orientation == "vertical":
 		marker_y += velocity * delta
-		if marker_y <= bar_top:
-			marker_y = bar_top
-			velocity = 0
-		elif marker_y >= bar_bottom:
-			marker_y = bar_bottom
+		var min_y = current_bar.global_position.y
+		var max_y = current_bar.global_position.y + current_bar.size.y - current_marker.size.y
+		marker_y = clamp(marker_y, min_y, max_y)
+		if marker_y <= min_y or marker_y >= max_y:
 			velocity = 0
 	else:
 		marker_x += velocity * delta
-		if marker_x <= bar_start:
-			marker_x = bar_start
-			velocity = 0
-		elif marker_x >= bar_end:
-			marker_x = bar_end
+		var min_x = current_bar.global_position.x
+		var max_x = current_bar.global_position.x + current_bar.size.x - current_marker.size.x
+		marker_x = clamp(marker_x, min_x, max_x)
+		if marker_x <= min_x or marker_x >= max_x:
 			velocity = 0
 
 func move_zone(delta):
 	change_timer -= delta
 	if change_timer <= 0:
 		if zone_orientation == "vertical":
-			zone_target = bar_top + randf() * (current_bar.size.y - zone_size)
+			var min_y = current_bar.global_position.y
+			var max_y = current_bar.global_position.y + current_bar.size.y - zone_size
+			zone_target = min_y + randf() * (max_y - min_y)
 		else:
-			zone_target = bar_start + randf() * (current_bar.size.x - zone_size)
+			var min_x = current_bar.global_position.x
+			var max_x = current_bar.global_position.x + current_bar.size.x - zone_size
+			zone_target = min_x + randf() * (max_x - min_x)
 		change_timer = randf_range(0.2,0.8)
 
 	var current_pos = (zone_y if zone_orientation=="vertical" else zone_x)
@@ -155,12 +157,12 @@ func move_zone(delta):
 
 	if zone_orientation == "vertical":
 		zone_y += move_delta
-		zone_y = clamp(zone_y, bar_top, bar_top + current_bar.size.y - zone_size)
+		zone_y = clamp(zone_y, current_bar.global_position.y, current_bar.global_position.y + current_bar.size.y - zone_size - 2.0)
 		if abs(zone_target - zone_y) < 5:
 			zone_y = zone_target
 	else:
 		zone_x += move_delta
-		zone_x = clamp(zone_x, bar_start, bar_start + current_bar.size.x - zone_size)
+		zone_x = clamp(zone_x, current_bar.global_position.x, current_bar.global_position.x + current_bar.size.x - zone_size - 2.0)
 		if abs(zone_target - zone_x) < 5:
 			zone_x = zone_target
 
@@ -315,16 +317,24 @@ func reset_zone():
 	can_pluck = false
 	round_active = true
 
-	if zone_orientation=="vertical":
+	if zone_orientation == "vertical":
 		bar_top = current_bar.global_position.y
-		bar_bottom = bar_top + current_bar.size.y - current_marker.size.y
-		marker_y = bar_top + current_bar.size.y/2
-		zone_y = bar_top + randf()*(current_bar.size.y - zone_size)
+		bar_bottom = bar_top + current_bar.size.y
+		marker_y = bar_top + current_bar.size.y / 2
+		zone_y = clamp(
+			bar_top + randf() * (current_bar.size.y - zone_size),
+			bar_top,
+			bar_bottom - zone_size 
+		)
 	else:
 		bar_start = current_bar.global_position.x
-		bar_end = bar_start + current_bar.size.x - current_marker.size.x
-		marker_x = bar_start + current_bar.size.x/2
-		zone_x = bar_start + randf()*(current_bar.size.x - zone_size)
+		bar_end = bar_start + current_bar.size.x
+		marker_x = bar_start + current_bar.size.x / 2
+		zone_x = clamp(
+			bar_start + randf() * (current_bar.size.x - zone_size),
+			bar_start,
+			bar_end - zone_size
+		)
 
 func spawn_rating_label(score_percent):
 	var color
@@ -356,8 +366,10 @@ func spawn_rating_label(score_percent):
 	tween.play()
 
 func show_round_result():
-	print("Quality: %d, Quantity: %d" % [pluck_quality, pluck_quantity])
-	var result =  0 if pluck_quantity == 0 else pluck_quality / pluck_quantity
+	var result =  0 if pluck_quantity == 0 else pluck_quality / (pluck_quantity / 1.5)
+	
+	result_label.modulate.a = 1.0
+	success_label.modulate.a = 1.0
 	v_root.visible = false
 	h_root.visible = false
 	progress_bar.visible = false
@@ -365,11 +377,15 @@ func show_round_result():
 	result_label.text = "Round %d Complete! Score: %d" % [current_round, result]
 	success_label.text = "Success" if result > 50 else "Fail"
 	
+	if result > 50:
+		successes += 1
+	
+	await get_tree().create_timer(3).timeout
+	
 	var tween = result_label.create_tween()
 	tween.tween_property(result_label, "modulate:a", 0, 3.0)
 	tween.play()
 
-	await get_tree().create_timer(3).timeout
 	
 	current_round += 1
 	if current_round > total_rounds:
@@ -377,10 +393,16 @@ func show_round_result():
 		return
 
 	# Setup next round
+	pluck_quality = 0
+	pluck_quantity = 0
 	setup_round(current_round)
 	reset_zone()
 
 func end_game():
+	if game_ended:
+		return
+	game_ended = true
+	
 	print("Successes:", successes)
 	if successes >= 3:
 		result_label.text = "GOOD END"
@@ -388,11 +410,22 @@ func end_game():
 	elif successes == 2:
 		result_label.text = "OKAY END"
 		print("NEUTRAL END")
+		PlayerManager.change_sanity(-2)
 	else:
 		result_label.text = "BAD END"
 		print("BAD END")
-
-	await get_tree().create_timer(3).timeout
+		PlayerManager.change_sanity(-4)
+	print("before timer")
 	
-	# fade out music
-	#switch scenes
+	var t = Timer.new()
+	t.wait_time = 1.0
+	t.one_shot = true
+	add_child(t)
+	t.start()
+	await t.timeout
+	t.queue_free()
+	print("After timer")
+	
+	music.stop()
+	DialogueManager.advance_time()
+	SceneManager.fade_to_scene("res://scenes/gas_station_inside.tscn", "Basement")

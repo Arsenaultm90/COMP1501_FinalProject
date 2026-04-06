@@ -1,0 +1,152 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "harlow_noon_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Agent Harlow",
+			"text": "Cid. Good afternoon. Mind if I take a few minutes of your time?",
+			"choices": [
+				{
+					"text": "Sure. What can I do for you?",
+					"next": "sure"
+				},
+				{
+					"text": "Depends on what you need.",
+					"next": "depends"
+				},
+				{
+					"text": "You were in here this morning.",
+					"next": "this_morning"
+				}
+			]
+		},
+		"sure": {
+			"speaker": "Agent Harlow",
+			"text": "I appreciate that. I'm doing a wellness study. Longitudinal. Nothing invasive.",
+			"next": "setup"
+		},
+		"depends": {
+			"speaker": "Agent Harlow",
+			"text": "Nothing much. A few questions. A short evaluation. Standard federal wellness protocol.",
+			"next": "setup"
+		},
+		"this_morning": {
+			"speaker": "Agent Harlow",
+			"text": "I did. You make a good cup of coffee. I find myself back here.",
+			"next": "setup"
+		},
+		"setup": {
+			"speaker": "Agent Harlow",
+			"text": "We've been tracking cognitive resilience in small community populations. You fit the profile nicely.",
+			"choices": [
+				{
+					"text": "What kind of evaluation?",
+					"next": "what_kind"
+				},
+				{
+					"text": "I'm not sure I'm interested.",
+					"next": "not_interested"
+				},
+				{
+					"text": "Alright. What do you need from me?",
+					"next": "alright",
+					"flags": {
+						"cid_agreed_harlow": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"what_kind": {
+			"speaker": "Agent Harlow",
+			"text": "Response time. Pattern recognition. A bit of manual coordination. Nothing you haven't done before.",
+			"next": "codeword_1"
+		},
+		"not_interested": {
+			"speaker": "Agent Harlow",
+			"text": "Of course. Participation is entirely voluntary. Although I think you might find it... familiar.",
+			"next": "codeword_1"
+		},
+		"alright": {
+			"speaker": "Agent Harlow",
+			"text": "Wonderful. We'll keep it brief. I just need you to run through a short sequence.",
+			"next": "codeword_1"
+		},
+		"codeword_1": {
+			"speaker": "Agent Harlow",
+			"text": "When you're ready, I'd like you to focus. The first sequence keyword is: Cascade.",
+			"next": "codeword_response"
+		},
+		"codeword_response": {
+			"speaker": "Agent Harlow",
+			"text": "Take your time. There's no wrong answer. Just let your instincts guide you.",
+			"choices": [
+				{
+					"text": "Cascade. Alright.",
+					"next": "response_comply",
+					"flags": {
+						"harlow_codeword_1_given": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "That's a strange word for a wellness test.",
+					"next": "response_question"
+				},
+				{
+					"text": "I don't think I want to do this.",
+					"next": "response_refuse"
+				}
+			]
+		},
+		"response_comply": {
+			"speaker": "Agent Harlow",
+			"text": "Good. Very good. We'll continue this evening. Get some rest in the meantime.",
+			"next": "farewell"
+		},
+		"response_question": {
+			"speaker": "Agent Harlow",
+			"text": "It's a neutral stimulus. We use them to baseline cognitive response. Nothing more.",
+			"next": "farewell"
+		},
+		"response_refuse": {
+			"speaker": "Agent Harlow",
+			"text": "That's perfectly fine. The offer stands. I'll be around.",
+			"next": "farewell",
+			"flags": {
+				"harlow_refused_noon": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"farewell": {
+			"speaker": "Agent Harlow",
+			"text": "Thank you for your time Cid. This town is lucky to have someone like you.",
+			"flags": {
+				"harlow_noon_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Agent Harlow",
+			"text": "We'll pick up tonight. Don't overthink it.",
+			"next": "end"
+		}
+	}
+}

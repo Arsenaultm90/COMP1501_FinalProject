@@ -1,0 +1,169 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "ruth_night_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Ruth",
+			"text": "Cid. Good lord. Come inside. You look like you've seen a ghost.",
+			"choices": [
+				{
+					"text": "I'm okay Ruth. Just a lot on my mind.",
+					"next": "lot_on_mind"
+				},
+				{
+					"text": "I need to talk to someone.",
+					"next": "need_to_talk"
+				},
+				{
+					"text": "I might be leaving tonight.",
+					"next": "leaving",
+					"flags": {
+						"ruth_knows_leaving": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"lot_on_mind": {
+			"speaker": "Ruth",
+			"text": "Then put it somewhere. Talk to me.",
+			"next": "ruth_listens"
+		},
+		"need_to_talk": {
+			"speaker": "Ruth",
+			"text": "Then talk. I'm not going anywhere.",
+			"next": "ruth_listens"
+		},
+		"leaving": {
+			"speaker": "Ruth",
+			"text": "Tonight. What do you mean tonight?",
+			"next": "ruth_listens"
+		},
+		"ruth_listens": {
+			"speaker": "Ruth",
+			"text": "That man who came through today. He said something to you didn't he.",
+			"choices": [
+				{
+					"text": "He did. I don't understand all of it.",
+					"next": "dont_understand"
+				},
+				{
+					"text": "How did you know?",
+					"next": "how_know"
+				},
+				{
+					"text": "I'm not sure what's real right now Ruth.",
+					"next": "not_real",
+					"flags": {
+						"cid_losing_ground": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"dont_understand": {
+			"speaker": "Ruth",
+			"text": "That's alright. You don't always have to understand. You just have to decide.",
+			"next": "ruth_anchor"
+		},
+		"how_know": {
+			"speaker": "Ruth",
+			"text": "Because I've seen that look before. On someone else. A long time ago. They didn't stay either.",
+			"next": "ruth_anchor"
+		},
+		"not_real": {
+			"speaker": "Ruth",
+			"text": "I'm real. This kitchen is real. And you've been a good person every day you've been here. That's real.",
+			"next": "ruth_anchor"
+		},
+		"ruth_anchor": {
+			"speaker": "Ruth",
+			"text": "You have a life here Cid. It might not be what you came from, but it's yours.",
+			"choices": [
+				{
+					"text": "I know. And that's why this is hard.",
+					"next": "hard"
+				},
+				{
+					"text": "Maybe that's enough.",
+					"next": "enough",
+					"flags": {
+						"ending_bliss_flag": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "I think I have to go.",
+					"next": "have_to_go",
+					"flags": {
+						"cid_choosing_escape": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"hard": {
+			"speaker": "Ruth",
+			"text": "The hard things usually are. That's how you know they matter.",
+			"next": "ruth_farewell_branch"
+		},
+		"enough": {
+			"speaker": "Ruth",
+			"text": "It is enough. More than enough. You stay. You let whatever this is pass.",
+			"next": "ruth_farewell_branch"
+		},
+		"have_to_go": {
+			"speaker": "Ruth",
+			"text": "Then go. But you take this with you.",
+			"next": "ruth_gift",
+			"flags": {
+				"ruth_blessed_escape": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"ruth_gift": {
+			"speaker": "Ruth",
+			"text": "You're loved here Cid. Whatever they tell you you are. You remember that first.",
+			"next": "farewell"
+		},
+		"ruth_farewell_branch": {
+			"speaker": "Ruth",
+			"text": "Whatever you decide. You come back here for breakfast. Promise me.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Ruth",
+			"text": "Go on now. I'll keep the light on.",
+			"flags": {
+				"ruth_night_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Ruth",
+			"text": "Light's still on. Always will be.",
+			"next": "end"
+		}
+	}
+}

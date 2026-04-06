@@ -1,0 +1,96 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "ruth_noon_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Ruth",
+			"text": "There you are. You look like you've had a morning. Come sit down.",
+			"choices": [
+				{ "text": "I'm alright Ruth.", "next": "alright" },
+				{ "text": "It has been a strange one.", "next": "strange" },
+				{ "text": "Is it that obvious?", "next": "obvious" }
+			]
+		},
+		"alright": {
+			"speaker": "Ruth",
+			"text": "You say that and then you sit down like the world owes you something. What happened?",
+			"next": "check_in"
+		},
+		"strange": {
+			"speaker": "Ruth",
+			"text": "Strange like busy or strange like something's off?",
+			"next": "check_in"
+		},
+		"obvious": {
+			"speaker": "Ruth",
+			"text": "To me it is. Now sit. I'll get you something warm.",
+			"next": "check_in"
+		},
+		"check_in": {
+			"speaker": "Ruth",
+			"text": "There was a man in here earlier. Government type. Very polite. You know him?",
+			"choices": [
+				{ "text": "He came by the station too.", "next": "came_by" },
+				{ "text": "What did he want?", "next": "what_want" },
+				{ "text": "What made you think government?", "next": "government" }
+			]
+		},
+		"came_by": {
+			"speaker": "Ruth",
+			"text": "Hmm. Making the rounds then. He seemed very interested in how long folks had been here.",
+			"next": "ruth_feeling"
+		},
+		"what_want": {
+			"speaker": "Ruth",
+			"text": "Said he was doing a community survey. Wanted to know how long people had lived here. How they were getting on.",
+			"next": "ruth_feeling"
+		},
+		"government": {
+			"speaker": "Ruth",
+			"text": "Oh you know the type. Clean shoes, cheap coffee order. Eyes that don't really look at you.",
+			"next": "ruth_feeling"
+		},
+		"ruth_feeling": {
+			"speaker": "Ruth",
+			"text": "I didn't care for him. Something about a man who smiles too much.",
+			"choices": [
+				{ "text": "He seemed fine to me.", "next": "fine" },
+				{ "text": "I got that feeling too.", "next": "same_feeling",
+				  "flags": { "ruth_shared_instinct": { "type": "event", "value": true } }
+				},
+				{ "text": "You don't trust many people do you Ruth.", "next": "trust" }
+			]
+		},
+		"fine": {
+			"speaker": "Ruth",
+			"text": "Maybe. I've just been around long enough to know when a smile isn't one.",
+			"next": "farewell"
+		},
+		"same_feeling": {
+			"speaker": "Ruth",
+			"text": "Then trust it. Your gut's smarter than your head most days.",
+			"next": "farewell"
+		},
+		"trust": {
+			"speaker": "Ruth",
+			"text": "I trust plenty of people. Just not ones that show up unannounced with clipboards.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Ruth",
+			"text": "You eat something proper tonight. And you come by if you need anything. I mean that.",
+			"flags": {
+				"ruth_noon_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Ruth",
+			"text": "Bowl's still warm. You know where I am.",
+			"next": "end"
+		}
+	}
+}

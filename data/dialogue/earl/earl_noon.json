@@ -1,0 +1,113 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "earl_noon_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Earl",
+			"text": "Cid. Slow morning over at the shop. Figured I'd stretch my legs.",
+			"choices": [
+				{ "text": "Good timing. It's been quiet here too.", "next": "quiet" },
+				{ "text": "You doing alright Earl?", "next": "alright" },
+				{ "text": "You seem like you've got something on your mind.", "next": "something" }
+			]
+		},
+		"quiet": {
+			"speaker": "Earl",
+			"text": "Quiet's good. Quiet means everything's working the way it should.",
+			"next": "notice"
+		},
+		"alright": {
+			"speaker": "Earl",
+			"text": "Fine as ever. Just keeping an eye on things. Old habit.",
+			"next": "notice"
+		},
+		"something": {
+			"speaker": "Earl",
+			"text": "Ha. Always do. That's what keeps a man sharp.",
+			"next": "notice"
+		},
+		"notice": {
+			"speaker": "Earl",
+			"text": "You notice anything unusual this morning? Anyone come through you didn't recognize?",
+			"choices": [
+				{ "text": "Not really. Why?", "next": "why_not" },
+				{ "text": "There was a man in a suit earlier.", "next": "suit" },
+				{ "text": "Should I be watching for someone?", "next": "watching" }
+			]
+		},
+		"why_not": {
+			"speaker": "Earl",
+			"text": "No reason. Small town. New faces stand out is all.",
+			"next": "farewell"
+		},
+		"suit": {
+			"speaker": "Earl",
+			"text": "That so.",
+			"next": "suit_follow",
+			"flags": {
+				"earl_knows_harlow_here": { "type": "event", "value": true }
+			}
+		},
+		"suit_follow": {
+			"speaker": "Earl",
+			"text": "He say anything to you?",
+			"choices": [
+				{ "text": "Just ordered coffee.", "next": "just_coffee" },
+				{ "text": "He asked some strange questions.", "next": "strange_questions" },
+				{ "text": "He mentioned a minigame.", "next": "minigame_mention" }
+			]
+		},
+		"just_coffee": {
+			"speaker": "Earl",
+			"text": "Good. You keep it that way. Some conversations aren't worth having.",
+			"next": "farewell"
+		},
+		"strange_questions": {
+			"speaker": "Earl",
+			"text": "What kind of questions?",
+			"next": "strange_follow",
+			"flags": {
+				"earl_suspicious_harlow": { "type": "event", "value": true }
+			}
+		},
+		"strange_follow": {
+			"speaker": "Earl",
+			"text": "Never mind. Just... if he comes back, you come find me first. Before you answer anything.",
+			"next": "farewell"
+		},
+		"minigame_mention": {
+			"speaker": "Earl",
+			"text": "Don't play it.",
+			"next": "minigame_follow",
+			"flags": {
+				"earl_knows_activation": { "type": "event", "value": true }
+			}
+		},
+		"minigame_follow": {
+			"speaker": "Earl",
+			"text": "I mean it Cid. Whatever he asks you to do, you say no. Come find me instead.",
+			"next": "farewell"
+		},
+		"watching": {
+			"speaker": "Earl",
+			"text": "Not specifically. Just stay aware. That's all anyone can do.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Earl",
+			"text": "I'll be around. You need anything, you know where to find me.",
+			"flags": {
+				"earl_noon_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Earl",
+			"text": "Still here. Good.",
+			"next": "end"
+		}
+	}
+}

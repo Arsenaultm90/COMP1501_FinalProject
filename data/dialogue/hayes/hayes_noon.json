@@ -1,0 +1,147 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "hayes_noon_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Deputy Hayes",
+			"text": "Cid. You got a minute?",
+			"choices": [
+				{
+					"text": "Sure. What's up?",
+					"next": "sure"
+				},
+				{
+					"text": "Everything alright Deputy?",
+					"next": "alright"
+				},
+				{
+					"text": "You look like you haven't slept.",
+					"next": "sleep"
+				}
+			]
+		},
+		"sure": {
+			"speaker": "Deputy Hayes",
+			"text": "Good. Keep it casual. Don't want anyone thinking we're having a conversation.",
+			"next": "harlow_question"
+		},
+		"alright": {
+			"speaker": "Deputy Hayes",
+			"text": "Professionally? Fine. Personally? Working on it. Either way keep smiling.",
+			"next": "harlow_question"
+		},
+		"sleep": {
+			"speaker": "Deputy Hayes",
+			"text": "I haven't. Been watching the motel since six.",
+			"next": "harlow_question"
+		},
+		"harlow_question": {
+			"speaker": "Deputy Hayes",
+			"text": "The man staying at the motel. Federal plates on his car. You know him?",
+			"choices": [
+				{
+					"text": "He came into the station this morning.",
+					"next": "came_in",
+					"flags": {
+						"hayes_knows_harlow_contact": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "Never seen him before.",
+					"next": "never_seen"
+				},
+				{
+					"text": "Why are you watching the motel?",
+					"next": "why_motel"
+				}
+			]
+		},
+		"came_in": {
+			"speaker": "Deputy Hayes",
+			"text": "What did he want?",
+			"next": "came_in_follow"
+		},
+		"came_in_follow": {
+			"speaker": "Deputy Hayes",
+			"text": "Never mind. Don't answer that. Just... did he give you anything? Ask you to do anything?",
+			"choices": [
+				{
+					"text": "He mentioned some kind of test.",
+					"next": "test_mention",
+					"flags": {
+						"hayes_alarmed": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "Just small talk.",
+					"next": "small_talk"
+				},
+				{
+					"text": "Why does it matter?",
+					"next": "why_matter"
+				}
+			]
+		},
+		"test_mention": {
+			"speaker": "Deputy Hayes",
+			"text": "Don't do it. Whatever it is. Say you will and then don't.",
+			"next": "farewell"
+		},
+		"small_talk": {
+			"speaker": "Deputy Hayes",
+			"text": "Good. Keep it that way.",
+			"next": "farewell"
+		},
+		"why_matter": {
+			"speaker": "Deputy Hayes",
+			"text": "Because the last two people that talked to someone like him aren't here anymore.",
+			"next": "farewell",
+			"flags": {
+				"hayes_referenced_missing": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"never_seen": {
+			"speaker": "Deputy Hayes",
+			"text": "Federal plates. Tinted windows. Been parked outside your station twice already.",
+			"next": "farewell"
+		},
+		"why_motel": {
+			"speaker": "Deputy Hayes",
+			"text": "Because that's my job. And because something about this doesn't sit right.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Deputy Hayes",
+			"text": "You didn't hear any of this from me. Clear?",
+			"flags": {
+				"hayes_noon_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Deputy Hayes",
+			"text": "Remember what I said.",
+			"next": "end"
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Rick",
+			"text": "THE FUEL TRUCK IS HERE. GO HELP UNLOAD IT!",
+			"choices": [
+				{ "text": "On it!", "next": "farewell" },
+			]
+		},
+		"farewell": {
+			"text": "DON'T SPILL ANY",
+			"next": "end",
+		}
+	}
+}

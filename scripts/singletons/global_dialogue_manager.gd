@@ -1,5 +1,41 @@
 extends Node
 
+enum TimeOfDay { MORNING, NOON, NIGHT }
+var current_time: TimeOfDay = TimeOfDay.MORNING
+
+const DIALOGUE_PATHS = {
+	"earl": {
+		TimeOfDay.MORNING: "res://data/dialogue/earl/earl_morning.json",
+		TimeOfDay.NOON:    "res://data/dialogue/earl/earl_noon.json",
+		TimeOfDay.NIGHT:   "res://data/dialogue/earl/earl_night.json",
+	},
+	"frank": {
+		TimeOfDay.MORNING: "res://data/dialogue/frank/frank_morning.json",
+		TimeOfDay.NOON:    "res://data/dialogue/frank/frank_noon.json",
+		TimeOfDay.NIGHT:   "res://data/dialogue/frank/frank_night.json",
+	},
+	"hayes": {
+		TimeOfDay.MORNING: "res://data/dialogue/hayes/hayes_morning.json",
+		TimeOfDay.NOON:    "res://data/dialogue/hayes/hayes_noon.json",
+		TimeOfDay.NIGHT:   "res://data/dialogue/hayes/hayes_night.json",
+	},
+	"rick": {
+		TimeOfDay.MORNING: "res://data/dialogue/rick/rick_morning.json",
+		TimeOfDay.NOON:    "res://data/dialogue/rick/rick_noon.json",
+		TimeOfDay.NIGHT:   "res://data/dialogue/rick/rick_night.json",
+	},
+	"ruth": {
+		TimeOfDay.MORNING: "res://data/dialogue/ruth/ruth_morning.json",
+		TimeOfDay.NOON:    "res://data/dialogue/ruth/ruth_noon.json",
+		TimeOfDay.NIGHT:   "res://data/dialogue/ruth/ruth_night.json",
+	},
+	"harlow": {
+		TimeOfDay.MORNING: "",
+		TimeOfDay.NOON:    "res://data/dialogue/agent_harlow/harlow_noon.json",
+		TimeOfDay.NIGHT:   "res://data/dialogue/agent_harlow/harlow_night.json",
+	},
+}
+
 var dialogue_lines : Array[String] = []
 var current_line_index : int = 0
 var text_box_pos : Vector2
@@ -55,3 +91,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		
 		_show_text_box()
+
+func get_dialogue(npc_id: String) -> String:
+	return DIALOGUE_PATHS.get(npc_id, {}).get(current_time, "")
+
+func advance_time() -> void:
+	current_time = (current_time + 1) as TimeOfDay

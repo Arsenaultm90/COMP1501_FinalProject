@@ -1,0 +1,128 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "earl_night_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Earl",
+			"text": "Cid. Good. I was hoping to catch you before it got too late.",
+			"choices": [
+				{ "text": "What's going on Earl?", "next": "whats_going_on" },
+				{ "text": "You look worried.", "next": "worried" },
+				{ "text": "Long day.", "next": "long_day" }
+			]
+		},
+		"whats_going_on": {
+			"speaker": "Earl",
+			"text": "That man from this morning. He's still in town. That's not normal.",
+			"next": "warning"
+		},
+		"worried": {
+			"speaker": "Earl",
+			"text": "I'm careful. There's a difference. That man is still in town.",
+			"next": "warning"
+		},
+		"long_day": {
+			"speaker": "Earl",
+			"text": "About to get longer. That suited fellow hasn't left.",
+			"next": "warning"
+		},
+		"warning": {
+			"speaker": "Earl",
+			"text": "I need you to listen to me very carefully. Do you trust me?",
+			"choices": [
+				{ "text": "Of course I do.", "next": "trust_yes" },
+				{ "text": "What's this about Earl?", "next": "trust_deflect" },
+				{ "text": "Should I?", "next": "trust_question" }
+			]
+		},
+		"trust_yes": {
+			"speaker": "Earl",
+			"text": "Good. Then hear me out. Some people come to places like this looking for something specific. Something they lost track of.",
+			"next": "reveal"
+		},
+		"trust_deflect": {
+			"speaker": "Earl",
+			"text": "It's about you, son. More than you know.",
+			"next": "reveal"
+		},
+		"trust_question": {
+			"speaker": "Earl",
+			"text": "That's a fair question. And the honest answer is yes. More than most people here.",
+			"next": "reveal",
+			"flags": {
+				"earl_trust_established": { "type": "event", "value": true }
+			}
+		},
+		"reveal": {
+			"speaker": "Earl",
+			"text": "You came to this town for a reason, Cid. You just don't remember what it was.",
+			"choices": [
+				{ "text": "What are you talking about?", "next": "deny" },
+				{ "text": "I came here for work.", "next": "work" },
+				{ "text": "I've had that feeling too.", "next": "feeling",
+				  "flags": { "cid_open_to_truth": { "type": "event", "value": true } }
+				}
+			]
+		},
+		"deny": {
+			"speaker": "Earl",
+			"text": "I know it sounds strange. But that man in the suit isn't here for coffee.",
+			"next": "escape_offer"
+		},
+		"work": {
+			"speaker": "Earl",
+			"text": "That's what you were told. There's a difference.",
+			"next": "escape_offer"
+		},
+		"feeling": {
+			"speaker": "Earl",
+			"text": "I know. That's why I'm talking to you now and not tomorrow.",
+			"next": "escape_offer"
+		},
+		"escape_offer": {
+			"speaker": "Earl",
+			"text": "If you want answers, find Frank tonight. He's been where you are. He'll tell you what I can't.",
+			"choices": [
+				{ "text": "I'll find him.", "next": "find_frank",
+				  "flags": { "earl_sent_to_frank": { "type": "event", "value": true } }
+				},
+				{ "text": "I think you've lost it Earl.", "next": "dismiss" },
+				{ "text": "What happens if I don't?", "next": "dont" }
+			]
+		},
+		"find_frank": {
+			"speaker": "Earl",
+			"text": "Good. And Cid. Don't let that man run any more tests on you. Whatever he calls them.",
+			"next": "farewell"
+		},
+		"dismiss": {
+			"speaker": "Earl",
+			"text": "Maybe so. Just... be careful tonight. That's all.",
+			"next": "farewell"
+		},
+		"dont": {
+			"speaker": "Earl",
+			"text": "Then tomorrow you might not be asking questions anymore.",
+			"next": "farewell",
+			"flags": {
+				"earl_warned_activation": { "type": "event", "value": true }
+			}
+		},
+		"farewell": {
+			"speaker": "Earl",
+			"text": "Go on now. I'll keep watch from here.",
+			"flags": {
+				"earl_night_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Earl",
+			"text": "You remember what I said. That's all I ask.",
+			"next": "end"
+		}
+	}
+}

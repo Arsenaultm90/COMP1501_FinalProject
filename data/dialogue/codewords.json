@@ -1,0 +1,18 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Agent Harlow",
+			"text": "Remember the words as follows...",
+			"next": "end"
+		},
+		"farewell": {
+			"text": "Kangaroo, Optical, Cascade, Gallop...",
+			"next": "end",
+		}
+	}
+}

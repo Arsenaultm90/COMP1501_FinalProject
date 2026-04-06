@@ -35,7 +35,7 @@ func fade_in() -> void:
 	await tween.finished
 	
 	player = get_tree().get_first_node_in_group("Player")
-	if player:
+	if player and PlayerManager.intro_played:
 		player.enable_controls()
 	is_transitioning = false
 
@@ -45,16 +45,23 @@ func fade_to_scene(scene_path: String, audio_name: String) -> void:
 		player.disable_controls()
 	
 	GlobalUI.game_clock.pause_clock()
-	sound_fx.stream = load("res://sounds/fx/" + audio_name + ".ogg")
-	sound_fx.play()
+	
 	await fade_out()
-	await sound_fx.finished
+	
+	if audio_name:
+		sound_fx.stream = load("res://sounds/fx/" + audio_name + ".ogg")
+		sound_fx.play()
+		await sound_fx.finished
+		
 	get_tree().change_scene_to_file(scene_path)
+	await get_tree().process_frame
 	await get_tree().process_frame
 	await get_tree().process_frame
 	set_spawn.emit(audio_name)
 	await fade_in()
-	GlobalUI.game_clock.start_clock()
+	
+	if audio_name != "Minigame":
+		GlobalUI.game_clock.start_clock()
 	player = get_tree().get_first_node_in_group("Player")
 	
 	if player:
@@ -67,6 +74,7 @@ func play_music(track_name: String) -> void:
 			return
 	music.stream = load(path)
 	music.play()
+	
 
 func stop_music() -> void:
 	music.stop()

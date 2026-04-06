@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://bun65tor2qtgu"]
+
+[ext_resource type="Script" uid="uid://bfmt20x5o8fcl" path="res://scripts/ending.gd" id="1_mqjok"]
+[ext_resource type="FontFile" uid="uid://5lg58a1j0bkb" path="res://art/fonts/superstar_memesbruh03.ttf" id="2_fyrdv"]
+[ext_resource type="Texture2D" uid="uid://chpkskmkt057f" path="res://art/character/prototype_character.png" id="3_2x1jc"]
+[ext_resource type="AudioStream" uid="uid://dmw4adu175084" path="res://sounds/music/Ending.ogg" id="4_nfmnx"]
+
+[node name="Ending" type="Control" unique_id=1494961770]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqjok")
+
+[node name="Frame" type="ColorRect" parent="." unique_id=793025768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.83033526, 0.8303351, 0.8303351, 1)
+
+[node name="OuterMargin" type="MarginContainer" parent="." unique_id=1338557646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Background" type="ColorRect" parent="OuterMargin" unique_id=913858591]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="InnerMargin" type="MarginContainer" parent="OuterMargin" unique_id=236473493]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OuterMargin/InnerMargin" unique_id=1703368193]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="Title" type="Label" parent="OuterMargin/InnerMargin/VBoxContainer" unique_id=1944522338]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fyrdv")
+theme_override_font_sizes/font_size = 128
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="OuterMargin/InnerMargin/VBoxContainer" unique_id=130985776]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fyrdv")
+theme_override_font_sizes/font_size = 40
+text = "Body"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="OuterMargin/InnerMargin/VBoxContainer" unique_id=265335452]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="OuterMargin/InnerMargin/VBoxContainer/Control" unique_id=1819277911]
+position = Vector2(20, 447)
+texture = ExtResource("3_2x1jc")
+hframes = 4
+vframes = 11
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=784498306]
+position = Vector2(964, 542)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=241224044]
+stream = ExtResource("4_nfmnx")
+autoplay = true

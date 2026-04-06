@@ -1,0 +1,83 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "rick_noon_talked", "node": "greeting_return" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Rick",
+			"text": "Slow afternoon. You doing alright out there?",
+			"choices": [
+				{ "text": "Fine. Had a strange morning though.", "next": "strange_morning" },
+				{ "text": "A man came in earlier I didn't recognize.", "next": "man_in" },
+				{ "text": "All good. Quiet.", "next": "quiet" }
+			]
+		},
+		"strange_morning": {
+			"speaker": "Rick",
+			"text": "Strange how?",
+			"next": "strange_follow"
+		},
+		"strange_follow": {
+			"speaker": "Rick",
+			"text": "Never mind. Probably nothing. You eat lunch?",
+			"choices": [
+				{ "text": "There was a man in a suit.", "next": "man_in" },
+				{ "text": "Yeah I'm fine Rick.", "next": "quiet" }
+			]
+		},
+		"man_in": {
+			"speaker": "Rick",
+			"text": "Suit. Federal car?",
+			"next": "federal",
+			"flags": {
+				"rick_noticed_harlow": { "type": "event", "value": true }
+			}
+		},
+		"federal": {
+			"speaker": "Rick",
+			"text": "He ask you anything personal? About how long you've been here, how you're sleeping?",
+			"choices": [
+				{ "text": "Something like that yeah.", "next": "something_like",
+				  "flags": { "rick_concerned": { "type": "event", "value": true } }
+				},
+				{ "text": "Just small talk.", "next": "small_talk" },
+				{ "text": "Why? Do you know him?", "next": "know_him" }
+			]
+		},
+		"something_like": {
+			"speaker": "Rick",
+			"text": "Stay busy this afternoon. Don't go looking for him.",
+			"next": "farewell"
+		},
+		"small_talk": {
+			"speaker": "Rick",
+			"text": "Mm. Alright.",
+			"next": "farewell"
+		},
+		"know_him": {
+			"speaker": "Rick",
+			"text": "I know the type. That's enough.",
+			"next": "farewell"
+		},
+		"quiet": {
+			"speaker": "Rick",
+			"text": "Good. Quiet means you're doing your job right.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Rick",
+			"text": "You let me know if that fellow comes back in. I want to know about it.",
+			"flags": {
+				"rick_noon_talked": { "type": "session", "value": true }
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Rick",
+			"text": "You remember what I said.",
+			"next": "end"
+		}
+	}
+}

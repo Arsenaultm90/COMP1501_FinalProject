@@ -1,0 +1,225 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "harlow_night_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Agent Harlow",
+			"text": "Cid. I was hoping to find you here. This won't take long.",
+			"choices": [
+				{
+					"text": "What do you want?",
+					"next": "what_want"
+				},
+				{
+					"text": "I know what you are.",
+					"next": "know_what",
+					"require_flag": "cid_open_to_truth"
+				},
+				{
+					"text": "I was just closing up.",
+					"next": "closing_up"
+				}
+			]
+		},
+		"what_want": {
+			"speaker": "Agent Harlow",
+			"text": "Just to finish what we started. One more sequence. Then I'm out of your hair.",
+			"next": "final_sequence"
+		},
+		"know_what": {
+			"speaker": "Agent Harlow",
+			"text": "Do you. And what am I?",
+			"next": "confrontation"
+		},
+		"closing_up": {
+			"speaker": "Agent Harlow",
+			"text": "This will only take a moment. You've been very cooperative Cid. I'd hate to end on an incomplete.",
+			"next": "final_sequence"
+		},
+		"confrontation": {
+			"speaker": "Agent Harlow",
+			"text": "I see. Someone's been talking to you.",
+			"choices": [
+				{
+					"text": "Enough people.",
+					"next": "enough_people",
+					"flags": {
+						"cid_resisting_harlow": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "Is it true? Am I a sleeper agent?",
+					"next": "direct_question"
+				},
+				{
+					"text": "Maybe I'm wrong.",
+					"next": "back_down"
+				}
+			]
+		},
+		"enough_people": {
+			"speaker": "Agent Harlow",
+			"text": "Then you already know the answer. The question is what you do with it.",
+			"next": "harlow_pitch"
+		},
+		"direct_question": {
+			"speaker": "Agent Harlow",
+			"text": "That's a loaded word. You're an asset. There's a difference.",
+			"next": "harlow_pitch"
+		},
+		"back_down": {
+			"speaker": "Agent Harlow",
+			"text": "You're not wrong. But it doesn't change the evening's agenda.",
+			"next": "final_sequence"
+		},
+		"harlow_pitch": {
+			"speaker": "Agent Harlow",
+			"text": "You were placed here because you needed rest. The program felt you'd earned it. Four years is a long sabbatical.",
+			"next": "harlow_pitch_2"
+		},
+		"harlow_pitch_2": {
+			"speaker": "Agent Harlow",
+			"text": "But the world didn't stop while you were resting. And you still have obligations.",
+			"choices": [
+				{
+					"text": "I don't remember any obligations.",
+					"next": "dont_remember"
+				},
+				{
+					"text": "What happens if I say no?",
+					"next": "say_no"
+				},
+				{
+					"text": "What would I have to do?",
+					"next": "what_do",
+					"flags": {
+						"cid_considering_activation": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"dont_remember": {
+			"speaker": "Agent Harlow",
+			"text": "That's by design. The sequence restores access. Think of it as a key.",
+			"next": "final_sequence"
+		},
+		"say_no": {
+			"speaker": "Agent Harlow",
+			"text": "Then you walk away. And tomorrow you feel fine. And the day after that. And eventually you forget this conversation ever happened.",
+			"next": "final_sequence"
+		},
+		"what_do": {
+			"speaker": "Agent Harlow",
+			"text": "You finish the sequence tonight. Then you receive a briefing. Then you go back to being exactly who you've always been. More or less.",
+			"next": "final_sequence"
+		},
+		"final_sequence": {
+			"speaker": "Agent Harlow",
+			"text": "Ready? The final keyword sequence is: Meridian. Stillwater. Home.",
+			"choices": [
+				{
+					"text": "Meridian. Stillwater. Home.",
+					"next": "comply",
+					"flags": {
+						"harlow_final_codeword_given": {
+							"type": "event",
+							"value": true
+						},
+						"ending_activation_flag": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "No. I'm done.",
+					"next": "refuse",
+					"flags": {
+						"harlow_refused_final": {
+							"type": "event",
+							"value": true
+						},
+						"cid_resisting_harlow": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "What happens when I say those words?",
+					"next": "what_happens"
+				}
+			]
+		},
+		"what_happens": {
+			"speaker": "Agent Harlow",
+			"text": "You remember. That's all. The rest follows naturally.",
+			"choices": [
+				{
+					"text": "Meridian. Stillwater. Home.",
+					"next": "comply",
+					"flags": {
+						"harlow_final_codeword_given": {
+							"type": "event",
+							"value": true
+						},
+						"ending_activation_flag": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "No.",
+					"next": "refuse",
+					"flags": {
+						"harlow_refused_final": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"comply": {
+			"speaker": "Agent Harlow",
+			"text": "Good. Give it a moment. It will feel like waking up.",
+			"next": "farewell"
+		},
+		"refuse": {
+			"speaker": "Agent Harlow",
+			"text": "Alright. I can't force it. But Cid — whatever you're planning tonight. Be careful. The people helping you have their own agendas.",
+			"next": "farewell"
+		},
+		"farewell": {
+			"speaker": "Agent Harlow",
+			"text": "Good night Cid. One way or another.",
+			"flags": {
+				"harlow_night_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Agent Harlow",
+			"text": "The sequence stands. Whenever you're ready.",
+			"next": "end"
+		}
+	}
+}

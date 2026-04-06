@@ -1,5 +1,11 @@
 extends CanvasLayer
 
+signal dialogue_finished
+
+var pipedream_dialogue = "res://data/dialogue/pipedream.json"
+var mindcatch_dialogue = "res://data/dialogue/mindcatch.json"
+var codewords_dialogue = "res://data/dialogue/codewords.json"
+
 @onready var player_interact_label : Label = $PlayerInteractLabel
 @onready var game_clock : Label = $GameClock
 @onready var text_box = $TextBox
@@ -21,7 +27,9 @@ var is_preparing: bool = false
 var can_advance_line: bool = false
 var text_box_pos: Vector2
 var interact_label_target: Node2D = null
-
+var pipedream_played: bool = false
+var mindcatch_played: bool = false
+var codewords_played: bool = false
 
 func _ready() -> void:
 	text_box.visible = false
@@ -33,6 +41,18 @@ func _process(_delta: float) -> void:
 			screen_pos.x - player_interact_label.size.x / 2.0,
 			screen_pos.y - player_interact_label.size.y - 50.0
 		)
+	
+	if game_clock.hour == 10 and not pipedream_played:
+		pipedream_played = true
+		start_pipedream()
+	
+	if  game_clock.hour == 15 and not mindcatch_played:
+		mindcatch_played = true
+		start_mindcatch()
+	
+	if game_clock.hour == 20 and not codewords_played:
+		codewords_played = true
+		start_codewords()
 
 func hide_ui() -> void:
 	visible = false
@@ -192,6 +212,7 @@ func _end_dialogue() -> void:
 	if player:
 		player.enable_controls()
 	game_clock.start_clock()
+	dialogue_finished.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event.is_action_pressed("advance_dialogue") or not is_dialogue_active:
@@ -226,3 +247,34 @@ func _get_day_hour() -> int:
 
 func _get_day_minute() -> int:
 	return game_clock.minute
+
+
+########################
+### MINIGAME METHODS ###
+########################
+func start_pipedream() -> void:
+	PlayerManager.player.disable_controls()
+	PlayerManager.set_prev_player_pos(PlayerManager.player.global_position)
+	start_dialogue(PlayerManager.get_prev_player_pos(), pipedream_dialogue)
+	await GlobalUI.dialogue_finished
+	GlobalUI.game_clock.day_active = false
+	SceneManager.fade_to_scene("res://scenes/minigames/pipedream/pipe_dream.tscn", "Minigame")
+	pass
+
+func start_mindcatch() -> void:
+	PlayerManager.player.disable_controls()
+	PlayerManager.set_prev_player_pos(PlayerManager.player.global_position)
+	start_dialogue(PlayerManager.get_prev_player_pos(), mindcatch_dialogue)
+	await GlobalUI.dialogue_finished
+	GlobalUI.game_clock.day_active = false
+	SceneManager.fade_to_scene("res://scenes/minigames/mindcatch/mind_catch.tscn", "Minigame")
+	pass
+
+func start_codewords() -> void:
+	PlayerManager.player.disable_controls()
+	PlayerManager.set_prev_player_pos(PlayerManager.player.global_position)
+	start_dialogue(PlayerManager.get_prev_player_pos(), codewords_dialogue)
+	await GlobalUI.dialogue_finished
+	GlobalUI.game_clock.day_active = false
+	SceneManager.fade_to_scene("res://scenes/minigame_codewords.tscn", "Minigame")
+	pass

@@ -1,0 +1,18 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{ "require_flag": "" },
+		{ "node": "greeting" }
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "???",
+			"text": "Cypress, Gargoyle, Zenith, Carp...",
+			"next": "farewell"
+		},
+		"farewell": {
+			"text": "*head pain*",
+			"next": "end",
+		}
+	}
+}

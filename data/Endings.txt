@@ -1,0 +1,5 @@
+Things to finish:
+	Sound effects for intro, minigame enter/exit, 
+	Mountains
+	Coffee Station
+	

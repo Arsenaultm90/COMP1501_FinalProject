@@ -1,0 +1,198 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "rick_night_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Rick",
+			"text": "Cid. Office. Now.",
+			"choices": [
+				{
+					"text": "What's wrong?",
+					"next": "whats_wrong"
+				},
+				{
+					"text": "You're scaring me Rick.",
+					"next": "scared"
+				},
+				{
+					"text": "I was just about to head out.",
+					"next": "head_out"
+				}
+			]
+		},
+		"whats_wrong": {
+			"speaker": "Rick",
+			"text": "Nothing's wrong. That's the problem. Everything's too quiet and that man is still in my town.",
+			"next": "core"
+		},
+		"scared": {
+			"speaker": "Rick",
+			"text": "Good. You should be paying attention. Come on.",
+			"next": "core"
+		},
+		"head_out": {
+			"speaker": "Rick",
+			"text": "Not yet you're not. Two minutes.",
+			"next": "core"
+		},
+		"core": {
+			"speaker": "Rick",
+			"text": "I'm going to ask you something and I need a straight answer. Those things he had you do today. Did any of them feel familiar?",
+			"choices": [
+				{
+					"text": "Familiar how?",
+					"next": "familiar_how"
+				},
+				{
+					"text": "Like I'd done them before. Yeah.",
+					"next": "done_before",
+					"flags": {
+						"rick_confirmed_memory_bleed": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "No. They just felt like games.",
+					"next": "just_games"
+				}
+			]
+		},
+		"familiar_how": {
+			"speaker": "Rick",
+			"text": "Like muscle memory. Like your hands knew what to do before your head caught up.",
+			"next": "rick_admission"
+		},
+		"done_before": {
+			"speaker": "Rick",
+			"text": "That's what I was afraid of.",
+			"next": "rick_admission"
+		},
+		"just_games": {
+			"speaker": "Rick",
+			"text": "That's what they're supposed to feel like.",
+			"next": "rick_admission"
+		},
+		"rick_admission": {
+			"speaker": "Rick",
+			"text": "I brought you here Cid. Four years ago. I vouched for you. I thought it was over.",
+			"choices": [
+				{
+					"text": "What do you mean you brought me here?",
+					"next": "brought_here"
+				},
+				{
+					"text": "What was supposed to be over?",
+					"next": "what_over"
+				},
+				{
+					"text": "You knew. This whole time.",
+					"next": "you_knew",
+					"flags": {
+						"cid_confronts_rick": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"brought_here": {
+			"speaker": "Rick",
+			"text": "You needed somewhere safe. Somewhere off the grid. I owed someone a favor and I called it in.",
+			"next": "rick_choice"
+		},
+		"what_over": {
+			"speaker": "Rick",
+			"text": "Your assignment. They told me it was terminated. Apparently they lied.",
+			"next": "rick_choice"
+		},
+		"you_knew": {
+			"speaker": "Rick",
+			"text": "Parts of it. Not all of it. And I'm sorry for the parts I knew.",
+			"next": "rick_choice"
+		},
+		"rick_choice": {
+			"speaker": "Rick",
+			"text": "I can't stop what he's doing. But you can. The question is whether you want to.",
+			"choices": [
+				{
+					"text": "What happens if I let him finish?",
+					"next": "let_finish"
+				},
+				{
+					"text": "I want to stop it.",
+					"next": "stop_it",
+					"flags": {
+						"cid_chooses_resistance": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "Maybe this is who I'm supposed to be.",
+					"next": "supposed_to_be",
+					"flags": {
+						"cid_open_to_activation": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"let_finish": {
+			"speaker": "Rick",
+			"text": "Then you walk out of here someone else's. And you won't mind at all. That's the worst part.",
+			"next": "farewell"
+		},
+		"stop_it": {
+			"speaker": "Rick",
+			"text": "Then go find Frank. He got out. He'll tell you how.",
+			"next": "farewell",
+			"flags": {
+				"rick_sent_to_frank": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"supposed_to_be": {
+			"speaker": "Rick",
+			"text": "No. It's not. But I can't make that choice for you.",
+			"next": "farewell",
+			"flags": {
+				"rick_lost_cid": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"farewell": {
+			"speaker": "Rick",
+			"text": "Whatever happens tonight Cid. You're a good kid. Always were.",
+			"flags": {
+				"rick_night_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Rick",
+			"text": "Go. You're running out of time.",
+			"next": "end"
+		}
+	}
+}

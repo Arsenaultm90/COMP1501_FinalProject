@@ -1,0 +1,147 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "hayes_night_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Deputy Hayes",
+			"text": "Cid. Don't walk away. I need thirty seconds.",
+			"choices": [
+				{
+					"text": "What is it?",
+					"next": "what_is_it"
+				},
+				{
+					"text": "You're starting to worry me Deputy.",
+					"next": "worry"
+				},
+				{
+					"text": "Talk fast.",
+					"next": "talk_fast"
+				}
+			]
+		},
+		"what_is_it": {
+			"speaker": "Deputy Hayes",
+			"text": "That federal agent filed paperwork this afternoon. Voluntary cooperation form. Your name's on it.",
+			"next": "core"
+		},
+		"worry": {
+			"speaker": "Deputy Hayes",
+			"text": "Good. You should be. Your name showed up on a federal form this afternoon.",
+			"next": "core"
+		},
+		"talk_fast": {
+			"speaker": "Deputy Hayes",
+			"text": "Your name's on a federal voluntary cooperation form. Filed this afternoon.",
+			"next": "core"
+		},
+		"core": {
+			"speaker": "Deputy Hayes",
+			"text": "Did you sign anything for that man?",
+			"choices": [
+				{
+					"text": "No. Nothing.",
+					"next": "nothing"
+				},
+				{
+					"text": "He had me do some things. Called them tests.",
+					"next": "tests",
+					"flags": {
+						"hayes_confirmed_tests": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "What does the form say?",
+					"next": "form"
+				}
+			]
+		},
+		"nothing": {
+			"speaker": "Deputy Hayes",
+			"text": "Then how did your name get there.",
+			"next": "decision"
+		},
+		"tests": {
+			"speaker": "Deputy Hayes",
+			"text": "Those weren't tests Cid. I don't know what they were but they weren't tests.",
+			"next": "decision"
+		},
+		"form": {
+			"speaker": "Deputy Hayes",
+			"text": "I can't read it. It's redacted down to the watermark. But your name's clear as day.",
+			"next": "decision"
+		},
+		"decision": {
+			"speaker": "Deputy Hayes",
+			"text": "I can stall him tonight. Make up a reason to keep him occupied. But that's all I can do.",
+			"choices": [
+				{
+					"text": "That would help. Thank you.",
+					"next": "accept_help",
+					"flags": {
+						"hayes_stalling_harlow": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "Don't put yourself at risk for me.",
+					"next": "decline_help"
+				},
+				{
+					"text": "What do you think I should do?",
+					"next": "ask_advice"
+				}
+			]
+		},
+		"accept_help": {
+			"speaker": "Deputy Hayes",
+			"text": "You've got a window. Use it for whatever you need to use it for.",
+			"next": "farewell"
+		},
+		"decline_help": {
+			"speaker": "Deputy Hayes",
+			"text": "That's not your call to make. Go.",
+			"next": "farewell"
+		},
+		"ask_advice": {
+			"speaker": "Deputy Hayes",
+			"text": "I think you should trust whoever in this town has been honest with you. And move.",
+			"next": "farewell",
+			"flags": {
+				"hayes_directed_to_allies": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"farewell": {
+			"speaker": "Deputy Hayes",
+			"text": "Go. And Cid. Whatever happens tonight. I filed a report.",
+			"flags": {
+				"hayes_night_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Deputy Hayes",
+			"text": "Window's still open. Don't waste it.",
+			"next": "end"
+		}
+	}
+}

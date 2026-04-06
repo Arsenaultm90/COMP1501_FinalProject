@@ -192,15 +192,20 @@ func _end_game(success: bool, reason: String) -> void:
 			await get_tree().create_timer(2.5).timeout
 			GlobalUI.game_clock.start_clock()
 			SceneManager.stop_music()
-			SceneManager.fade_to_scene("res://scenes/gas_station_inside.tscn", "Minigame")
+			DialogueManager.advance_time()
+			PlayerManager.player_spawned = false
+			SceneManager.fade_to_scene("res://scenes/outside.tscn", "")
 	else:
 		PlayerManager.pipe_dream_level = 1
 		result_label.text = "✗ " + reason
 		result_label.modulate = Color.RED
 		await get_tree().create_timer(2.5).timeout
+		PlayerManager.change_sanity(-2)
 		GlobalUI.game_clock.start_clock()
 		SceneManager.stop_music()
-		SceneManager.fade_to_scene("res://scenes/gas_station_inside.tscn", "Minigame")
+		DialogueManager.advance_time()
+		PlayerManager.player_spawned = false
+		SceneManager.fade_to_scene("res://scenes/outside.tscn", "")
 
 func _get_cell(pos: Vector2i) -> TextureRect:
 	return grid[pos.y][pos.x]

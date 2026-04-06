@@ -290,5 +290,6 @@ func _unhandled_input(event: InputEvent):
 
 func return_to_game() -> void:
 	$BrainUI.visible = false
+	print("Resistance: ", resistance)
 	PlayerManager.player_spawned = false
-	SceneManager.fade_to_scene("res://scenes/gas_station_inside.tscn", "Minigame")
+	SceneManager.fade_to_scene("res://scenes/ending.tscn", "")

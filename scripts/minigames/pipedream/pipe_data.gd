@@ -21,10 +21,12 @@ const LEVELS = {
 	},
 	3: {
 		"blocked_cells": [
-			Vector2i(1, 1), Vector2i(1, 4),
-			Vector2i(3, 0), Vector2i(3, 5),
-			Vector2i(4, 0), Vector2i(4, 5),
-			Vector2i(6, 2), Vector2i(6, 3)
+			Vector2i(1, 4), Vector2i(2, 2), 
+			Vector2i(3, 0), Vector2i(3, 2),
+			Vector2i(3, 5), Vector2i(4, 0),
+			Vector2i(4, 3), Vector2i(5, 1),
+			Vector2i(5, 3), Vector2i(5, 4)
+			
 		],
 		"flow_interval": 2
 	},

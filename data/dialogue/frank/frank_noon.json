@@ -1,0 +1,147 @@
+{
+	"start": "greeting",
+	"conditional_start": [
+		{
+			"require_flag": "frank_noon_talked",
+			"node": "greeting_return"
+		},
+		{
+			"node": "greeting"
+		}
+	],
+	"nodes": {
+		"greeting": {
+			"speaker": "Frank",
+			"text": "You're back. Sit down. I been thinking about you.",
+			"choices": [
+				{
+					"text": "Good thoughts I hope.",
+					"next": "good_thoughts"
+				},
+				{
+					"text": "What about me?",
+					"next": "about_me"
+				},
+				{
+					"text": "You doing okay Frank?",
+					"next": "okay"
+				}
+			]
+		},
+		"good_thoughts": {
+			"speaker": "Frank",
+			"text": "Complicated thoughts. Good and complicated aren't the same thing.",
+			"next": "core"
+		},
+		"about_me": {
+			"speaker": "Frank",
+			"text": "About what you are. What you might still be.",
+			"next": "core"
+		},
+		"okay": {
+			"speaker": "Frank",
+			"text": "Two brains is a lot to manage. But I manage.",
+			"next": "core"
+		},
+		"core": {
+			"speaker": "Frank",
+			"text": "You ever have a thought that doesn't feel like yours?",
+			"choices": [
+				{
+					"text": "Sometimes. Doesn't everyone?",
+					"next": "everyone"
+				},
+				{
+					"text": "What kind of thought?",
+					"next": "what_kind"
+				},
+				{
+					"text": "Yeah. More lately.",
+					"next": "more_lately",
+					"flags": {
+						"cid_admitted_foreign_thoughts": {
+							"type": "event",
+							"value": true
+						}
+					}
+				}
+			]
+		},
+		"everyone": {
+			"speaker": "Frank",
+			"text": "No. They don't. Most people only have the one set.",
+			"next": "frank_hint"
+		},
+		"what_kind": {
+			"speaker": "Frank",
+			"text": "Calm ones. Too calm. Like you already know what to do before you decide to do it.",
+			"next": "frank_hint"
+		},
+		"more_lately": {
+			"speaker": "Frank",
+			"text": "That's the signal warming up. Happened to me too.",
+			"next": "frank_hint"
+		},
+		"frank_hint": {
+			"speaker": "Frank",
+			"text": "The man in the suit. You seen him?",
+			"choices": [
+				{
+					"text": "Yeah. He came in this morning.",
+					"next": "harlow_yes",
+					"flags": {
+						"frank_knows_harlow_active": {
+							"type": "event",
+							"value": true
+						}
+					}
+				},
+				{
+					"text": "No. Who is he?",
+					"next": "harlow_no"
+				},
+				{
+					"text": "Why does everyone keep asking about him?",
+					"next": "harlow_everyone"
+				}
+			]
+		},
+		"harlow_yes": {
+			"speaker": "Frank",
+			"text": "Don't go back. Whatever he gave you to do, don't finish it.",
+			"next": "farewell"
+		},
+		"harlow_no": {
+			"speaker": "Frank",
+			"text": "You will. And when you do, don't look him in the eye.",
+			"next": "farewell"
+		},
+		"harlow_everyone": {
+			"speaker": "Frank",
+			"text": "Because the ones who notice are the ones who still have a chance.",
+			"next": "farewell",
+			"flags": {
+				"frank_flagged_awareness": {
+					"type": "event",
+					"value": true
+				}
+			}
+		},
+		"farewell": {
+			"speaker": "Frank",
+			"text": "Come find me tonight. I got something to tell you that I can't say out here.",
+			"flags": {
+				"frank_noon_talked": {
+					"type": "session",
+					"value": true
+				}
+			},
+			"next": "end"
+		},
+		"greeting_return": {
+			"speaker": "Frank",
+			"text": "Tonight. Remember.",
+			"next": "end"
+		}
+	}
+}
